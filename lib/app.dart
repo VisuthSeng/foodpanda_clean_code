@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodpanda_clean_code/Home_screen.dart';
+import 'package:foodpanda_clean_code/presentation/home/Home_screen.dart';
 import 'package:get/get.dart';
 
 class App extends StatelessWidget {
