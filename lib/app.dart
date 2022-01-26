@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodpanda_clean_code/presentation/home/Home_screen.dart';
+import 'package:foodpanda_clean_code/core/di/main_binding.dart';
+
+import 'package:foodpanda_clean_code/presentation/screen/home/Home_screen.dart';
 import 'package:get/get.dart';
 
 class App extends StatelessWidget {
@@ -15,7 +17,7 @@ class App extends StatelessWidget {
       // locale: AppLocalization.locale,
       // fallbackLocale: AppLocalization.fallbackLocale,
       // translations: AppLocalization(),
-      // initialBinding: MainBinding(),
+      initialBinding: MainBinding(),
       // initialRoute: AppConfig.welcomeScreenStartUp == true
       //     ? RouteName.language
       //     : RouteName.home,
