@@ -14,7 +14,25 @@ class HomeScreen extends StatelessWidget {
       drawer: const Drawer(),
       appBar: AppBar(
         backgroundColor: Colors.pink,
-        title: const Text("កន្លែងធ្វេីការ"),
+        title: Padding(
+          padding: const EdgeInsets.only(right: 70),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "កន្លែងធ្វេីការ",
+                style: TextStyle(fontSize: 16),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 1),
+                child: Text(
+                  "12160 St 228",
+                  style: TextStyle(fontSize: 12),
+                ),
+              ),
+            ],
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -68,23 +86,39 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "ដឹកជញ្ជូនអាហារ",
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.black),
+                          child: Stack(
+                            children: [
+                              const Positioned(
+                                child: SizedBox(
+                                  width: 300,
+                                  height: 125,
+                                  child: Image(
+                                    image:
+                                        AssetImage("assets/delivery_food.jpg"),
+                                  ),
                                 ),
-                                const Text(
-                                  "កម្ម៉ង់អាហារអ្នកចូលចិត្ត",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.black54),
+                                right: -2,
+                                bottom: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "ដឹកជញ្ជូនអាហារ",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.black),
+                                    ),
+                                    const Text(
+                                      "កម្មង់អាហារអ្នកចូលចិត្ត",
+                                      style: TextStyle(
+                                          fontSize: 12, color: Colors.black54),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -97,15 +131,15 @@ class HomeScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
+                          color: Colors.grey[300],
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: Colors.grey.withOpacity(0.5),
+                          //     spreadRadius: 5,
+                          //     blurRadius: 7,
+                          //     offset: const Offset(0, 3),
+                          //   ),
+                          // ],
                         ),
                         width: double.infinity,
                         height: 200,
@@ -115,34 +149,48 @@ class HomeScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(14),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: const Offset(0, 3),
-                                      ),
-                                    ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
                                 height: 170,
                                 width: 150,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                  child: Stack(
                                     children: [
                                       const Text(
-                                        "ហាងទំនេញ",
+                                        "ហាង​ទំនិញ",
                                         style: TextStyle(
                                             fontSize: 20, color: Colors.black),
                                       ),
-                                      const Text(
-                                        "គ្រឿងទេស និង​​ ច្រេីនមុខទៀត",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.black54),
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 30),
+                                        child: Text(
+                                          "គ្រឿងទេស និង ច្រេីនមុខទៀត",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black87),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        child: SizedBox(
+                                          width: 200,
+                                          height: 100,
+                                          child: Image(
+                                            image: AssetImage(
+                                                "assets/hangtomninh.jpg"),
+                                          ),
+                                        ),
+                                        bottom: -1,
+                                        right: -20,
                                       ),
                                     ],
                                   ),
@@ -152,7 +200,6 @@ class HomeScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(14),
                               child: Container(
-                                color: Colors.white,
                                 height: 170,
                                 width: 160,
                                 child: Column(
@@ -160,7 +207,7 @@ class HomeScreen extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: Colors.red,
+                                        color: Colors.white,
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(0.5),
@@ -179,7 +226,7 @@ class HomeScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: Colors.orange,
+                                          color: Colors.white,
                                           boxShadow: [
                                             BoxShadow(
                                               color:

@@ -65,8 +65,8 @@ class RestarauntScreen extends StatelessWidget {
                       (listPromotion) => Padding(
                         padding: const EdgeInsets.all(14),
                         child: SizedBox(
-                          height: 170,
-                          width: 140,
+                          height: 135,
+                          width: 110,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image(

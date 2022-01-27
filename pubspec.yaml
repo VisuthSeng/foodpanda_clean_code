@@ -84,6 +84,10 @@ flutter:
     - assets/halal_type.jpg
     - assets/korean_type.jpg
     - assets/pizza_type.jpg
+    - assets/delivery_food.jpg
+    - assets/hangtomninh.jpg
+    - assets/panda_mart.jpg
+    - assets/take_away.jpg
 
 
     

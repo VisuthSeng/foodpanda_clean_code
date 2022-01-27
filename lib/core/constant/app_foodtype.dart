@@ -1,5 +1,4 @@
 import 'package:foodpanda_clean_code/data/model/foodtype_model.dart';
-import 'package:foodpanda_clean_code/data/model/promotion_model.dart';
 
 class AppFoodType {
   const AppFoodType();
