@@ -5,6 +5,20 @@ import 'package:foodpanda_clean_code/domain/usecase/usecase.dart';
 import 'package:foodpanda_clean_code/domain/util/app_error.dart';
 import 'package:foodpanda_clean_code/domain/util/no_param.dart';
 
+class GetListofCategoryByShopIdUseCase
+    extends UseCaseFuture<List<CategoryModel>, String> {
+  final ICategoryRepository categoryRepository;
+
+  GetListofCategoryByShopIdUseCase({
+    required this.categoryRepository,
+  });
+
+  @override
+  Future<Either<AppError, List<CategoryModel>>> call(String parameter) async {
+    return await categoryRepository.getlistofCategoryByShopId(parameter);
+  }
+}
+
 class GetListofCategoryUseCase
     extends UseCaseFuture<List<CategoryModel>, NoParam> {
   final ICategoryRepository categoryRepository;

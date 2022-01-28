@@ -13,6 +13,11 @@ class CategoryRepository extends ICategoryRepository {
   CategoryRepository({
     required this.categoryDataSource,
   });
+  @override
+  Future<Either<AppError, List<CategoryModel>>> getlistofCategoryByShopId(
+      String shopId) {
+    return categoryDataSource.getlistofCategoryByShopId(shopId);
+  }
 
   @override
   Future<Either<AppError, List<CategoryModel>>> getlistofCategory() {

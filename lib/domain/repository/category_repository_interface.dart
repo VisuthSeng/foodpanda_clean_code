@@ -8,4 +8,6 @@ abstract class ICategoryRepository {
   Future<Either<AppError, String>> updateCategory(CategoryModel model);
   Future<Either<AppError, String>> deleteCategory(String recordId);
   Future<Either<AppError, List<CategoryModel>>> getlistofCategory();
+  Future<Either<AppError, List<CategoryModel>>> getlistofCategoryByShopId(
+      String shopId);
 }

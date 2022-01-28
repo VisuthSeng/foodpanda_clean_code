@@ -11,11 +11,40 @@ abstract class ICategoryDataSource {
   Future<Either<AppError, String>> updateCategory(CategoryModel model);
   Future<Either<AppError, String>> deleteCategory(String recordId);
   Future<Either<AppError, List<CategoryModel>>> getlistofCategory();
-  Future<Either<AppError, List<CategoryModel>>> readCategoryItemByCategoryId(
-      int recordId);
+  Future<Either<AppError, List<CategoryModel>>> getlistofCategoryByShopId(
+      String shopId);
 }
 
 class CategoryDataSource extends ICategoryDataSource {
+  @override
+  Future<Either<AppError, List<CategoryModel>>> getlistofCategoryByShopId(
+      String shopId) async {
+    List<CategoryModel> listCategory = [];
+    try {
+      await FirestoreCollection.category
+          .where('shopID', isEqualTo: shopId)
+          .get()
+          .then(
+        (QuerySnapshot querySnapshot) {
+          for (var doc in querySnapshot.docs) {
+            listCategory.add(
+              CategoryModel.fromQueryDocumentSnapshot(doc),
+            );
+          }
+        },
+      );
+
+      return Right(listCategory);
+    } catch (e) {
+      return Left(
+        AppError(
+          appErrorType: AppErrorType.connection,
+          description: e.toString(),
+        ),
+      );
+    }
+  }
+
   @override
   Future<Either<AppError, List<CategoryModel>>> getlistofCategory() async {
     List<CategoryModel> listCategory = [];
@@ -29,6 +58,7 @@ class CategoryDataSource extends ICategoryDataSource {
           }
         },
       );
+
       return Right(listCategory);
     } catch (e) {
       return Left(
@@ -75,31 +105,6 @@ class CategoryDataSource extends ICategoryDataSource {
     try {
       await FirestoreCollection.category.doc(recordId).delete();
       return Right(recordId);
-    } catch (e) {
-      return Left(
-        AppError(
-          appErrorType: AppErrorType.connection,
-          description: e.toString(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<AppError, List<CategoryModel>>> readCategoryItemByCategoryId(
-      int recordId) async {
-    List<CategoryModel> listCategory = [];
-    try {
-      await FirestoreCollection.category.get().then(
-        (QuerySnapshot querySnapshot) {
-          for (var doc in querySnapshot.docs) {
-            listCategory.add(
-              CategoryModel.fromQueryDocumentSnapshot(doc),
-            );
-          }
-        },
-      );
-      return Right(listCategory);
     } catch (e) {
       return Left(
         AppError(

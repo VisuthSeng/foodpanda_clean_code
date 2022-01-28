@@ -91,8 +91,15 @@ class MainBinding extends Bindings {
       ),
       permanent: true,
     );
+    Get.put<GetListofCategoryByShopIdUseCase>(
+      GetListofCategoryByShopIdUseCase(
+        categoryRepository: Get.find(),
+      ),
+      permanent: true,
+    );
     Get.put(
       CategoryController(
+        getListofCategoryByShopIdUseCase: Get.find(),
         getListofCategoryUseCase: Get.find(),
         saveCategoryUseCase: Get.find(),
         updateCategoryUseCase: Get.find(),

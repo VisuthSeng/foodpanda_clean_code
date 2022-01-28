@@ -5,6 +5,7 @@ import 'package:foodpanda_clean_code/domain/util/no_param.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
+  final GetListofCategoryByShopIdUseCase getListofCategoryByShopIdUseCase;
   final GetListofCategoryUseCase getListofCategoryUseCase;
   final SaveCategoryUseCase saveCategoryUseCase;
   final UpdateCategoryUseCase updateCategoryUseCase;
@@ -14,12 +15,13 @@ class CategoryController extends GetxController {
   var blankcategory = CategoryModel(
     id: '',
     nameCategory: '',
-    shopID: 0,
+    shopID: '',
     deliveryTime: '15 min',
     foodinCategory: '',
   );
 
   CategoryController({
+    required this.getListofCategoryByShopIdUseCase,
     required this.getListofCategoryUseCase,
     required this.saveCategoryUseCase,
     required this.updateCategoryUseCase,
@@ -28,6 +30,20 @@ class CategoryController extends GetxController {
 
   selectCategory(CategoryModel model) {
     selectedCategory = model;
+  }
+
+  loadCategoryByShopId(String shopId) async {
+    listCategory.clear();
+    // selectedCategory = blankcategory;
+    var response = await getListofCategoryByShopIdUseCase.call(shopId);
+    response.fold(
+      (l) {
+        Get.snackbar('Error', 'Load Data');
+      },
+      (r) {
+        listCategory.assignAll(r);
+      },
+    );
   }
 
   loadCategory() async {

@@ -9,6 +9,7 @@ abstract class UseCaseFuture<Type, Parameter> {
   Future<Either<AppError, Type>> call(Parameter parameter);
 }
 
+
 // abstract class UseCaseNoError<Type, Params> {
 //   Type call(Params params);
 // }

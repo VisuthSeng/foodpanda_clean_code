@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/core/enum/transaction_enum.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
-import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
-import 'package:foodpanda_clean_code/presentation/screen/shop/category/category_screen.dart';
-import 'package:foodpanda_clean_code/presentation/screen/shop/shop_form.dart';
+import 'package:foodpanda_clean_code/presentation/screen/shop/category/category_form.dart';
 import 'package:get/get.dart';
 
-class ShopScreen extends StatefulWidget {
-  const ShopScreen({Key? key}) : super(key: key);
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({Key? key}) : super(key: key);
 
   @override
-  _ShopScreenState createState() => _ShopScreenState();
+  _CategoryScreenState createState() => _CategoryScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
-  final ShopController shopController = Get.find();
+class _CategoryScreenState extends State<CategoryScreen> {
+  final CategoryController categoryController = Get.find();
   @override
   void initState() {
-    shopController.loadShop();
+    categoryController.loadCategory();
     super.initState();
   }
 
@@ -26,12 +24,12 @@ class _ShopScreenState extends State<ShopScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink,
-        title: const Text('Shop List'),
+        title: const Text('Category List'),
         actions: [
           IconButton(
             onPressed: () {
               Get.to(
-                () => const ShopForm(transactionMode: TransactionMode.add),
+                () => const CategoryForm(transactionMode: TransactionMode.add),
               );
             },
             icon: const Icon(Icons.add),
@@ -44,15 +42,15 @@ class _ShopScreenState extends State<ShopScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: shopController.listShop
+            children: categoryController.listCategory
                 .map(
-                  (shopModel) => GestureDetector(
+                  (categoryModel) => GestureDetector(
                     onTap: () {
-                      shopController.selectShop(shopModel);
-                      Get.to(
-                        () => const ShopForm(
-                            transactionMode: TransactionMode.edit),
-                      );
+                      categoryController.selectCategory(categoryModel);
+                      // Get.to(
+                      //   () => const ShopForm(
+                      //       transactionMode: TransactionMode.edit),
+                      // );
                     },
                     child: Card(
                       child: Container(
@@ -63,34 +61,22 @@ class _ShopScreenState extends State<ShopScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 5),
+                              padding: const EdgeInsets.only(right: 60),
                               child: Row(
                                 children: [
-                                  Text(shopModel.nameShop),
+                                  Text(categoryModel.nameCategory),
                                 ],
                               ),
                             ),
                             Row(
                               children: [
-                                Image(
-                                  image: AssetImage(shopModel.image),
-                                ),
+                                // Image(
+                                //   image: AssetImage(shopModel.image),
+                                // ),
                                 IconButton(
                                   onPressed: () {
-                                    final CategoryController
-                                        categoryController = Get.find();
                                     categoryController
-                                        .loadCategoryByShopId(shopModel.id);
-                                    shopController.selectShop(shopModel);
-                                    Get.to(
-                                      () => const CategoryScreen(),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.add),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    shopController.deleteShop(shopModel.id);
+                                        .deleteCategory(categoryModel.id);
                                   },
                                   icon: const Icon(Icons.delete),
                                 ),

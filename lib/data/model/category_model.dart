@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CategoryModel {
   final String id;
   final String nameCategory;
-  final int shopID;
+  final String shopID;
   final String deliveryTime;
   final String foodinCategory;
 
@@ -24,7 +24,7 @@ class CategoryModel {
     return CategoryModel(
       id: id ?? this.id,
       nameCategory: nameCategory ?? this.nameCategory,
-      shopID: int.tryParse(shopID ?? this.shopID.toString()) ?? 0,
+      shopID: shopID ?? this.shopID,
       deliveryTime: deliveryTime ?? this.deliveryTime,
       foodinCategory: foodinCategory ?? this.foodinCategory,
     );
