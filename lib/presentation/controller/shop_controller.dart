@@ -26,6 +26,12 @@ class ShopController extends GetxController {
     required this.deleteShopUseCase,
   });
 
+  @override
+  void onInit() {
+    loadShop();
+    super.onInit();
+  }
+
   selectShop(ShopModel model) {
     selectedShop = model;
   }

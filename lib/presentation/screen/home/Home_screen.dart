@@ -86,9 +86,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Get.snackbar("You have selected order food",
-                        //     "Thanks you for using us app",
-                        //     snackPosition: SnackPosition.BOTTOM);
                         Get.to(() => RestarauntScreen());
                       },
                       child: Padding(
