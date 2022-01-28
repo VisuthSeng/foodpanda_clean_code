@@ -8,13 +8,11 @@ class ShopModel {
   final String delivery;
   final String image;
   final double rating;
-  final List<CategoryModel>? listCategory;
 
   ShopModel(
       {required this.id,
       required this.image,
       required this.nameShop,
-      this.listCategory,
       required this.shopType,
       required this.delivery,
       required this.rating});
@@ -30,7 +28,6 @@ class ShopModel {
     return ShopModel(
       id: id ?? this.id,
       nameShop: nameShop ?? this.nameShop,
-      listCategory: listCategory ?? this.listCategory,
       shopType: shopType ?? this.shopType,
       image: image ?? this.image,
       delivery: delivery ?? this.delivery,
@@ -42,7 +39,6 @@ class ShopModel {
     return {
       'id': id,
       'nameShop': nameShop,
-      'listCategory': listCategory?.map((x) => x.toMap()).toList(),
       'shopType': shopType,
       'image': image,
       'delivery': delivery,
@@ -54,7 +50,6 @@ class ShopModel {
     return ShopModel(
       id: doc['id'] ?? '',
       nameShop: doc['nameShop'] ?? '',
-      listCategory: doc['listCategory'] ?? '',
       shopType: doc['shopType'] ?? '',
       image: doc['image'] ?? '',
       delivery: doc['delivery'] ?? '',

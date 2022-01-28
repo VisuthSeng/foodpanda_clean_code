@@ -5,7 +5,7 @@ import 'package:foodpanda_clean_code/data/repository/shop_repository.dart';
 import 'package:foodpanda_clean_code/domain/repository/category_repository_interface.dart';
 import 'package:foodpanda_clean_code/domain/repository/shop_repository_interface.dart';
 import 'package:foodpanda_clean_code/domain/usecase/category_usecase.dart';
-import 'package:foodpanda_clean_code/domain/usecase/customer_usecase.dart';
+import 'package:foodpanda_clean_code/domain/usecase/shop_usecase.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:get/get.dart';

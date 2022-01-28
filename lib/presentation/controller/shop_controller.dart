@@ -1,5 +1,5 @@
 import 'package:foodpanda_clean_code/data/model/shop_model.dart';
-import 'package:foodpanda_clean_code/domain/usecase/customer_usecase.dart';
+import 'package:foodpanda_clean_code/domain/usecase/shop_usecase.dart';
 import 'package:foodpanda_clean_code/domain/util/no_param.dart';
 import 'package:get/get.dart';
 
