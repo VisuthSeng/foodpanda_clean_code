@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
 import 'package:foodpanda_clean_code/presentation/screen/restaurant/restaurant_screen.dart';
+import 'package:foodpanda_clean_code/presentation/screen/shop/shop_screen.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +12,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 200,
+              color: Colors.pink[100],
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => const ShopScreen(),
+                );
+              },
+              child: const ListTile(
+                leading: Icon(Icons.shopping_cart_sharp),
+                title: Text("Create Shop"),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.pink,
         title: Padding(
@@ -67,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                         // Get.snackbar("You have selected order food",
                         //     "Thanks you for using us app",
                         //     snackPosition: SnackPosition.BOTTOM);
-                        Get.to(() => const RestarauntScreen());
+                        Get.to(() => RestarauntScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10),
@@ -199,7 +221,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(14),
-                              child: Container(
+                              child: SizedBox(
                                 height: 170,
                                 width: 160,
                                 child: Column(

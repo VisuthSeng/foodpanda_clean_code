@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/core/constant/app_foodtype.dart';
 import 'package:foodpanda_clean_code/core/constant/app_promotion.dart';
+import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
 import 'package:get/get.dart';
 
 class RestarauntScreen extends StatelessWidget {
-  const RestarauntScreen({Key? key}) : super(key: key);
+  final ShopController shopController = Get.find();
+  RestarauntScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,76 +125,82 @@ class RestarauntScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: 10,
                 ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      height: 240,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 4,
-                              right: 4,
-                            ),
-                            child: SizedBox(
-                              width: 300,
-                              height: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: const Image(
-                                  image: AssetImage("assets/tube-coffee.jpeg"),
-                                  fit: BoxFit.fill,
+                child: Obx(
+                  () => Row(
+                    children: shopController.listShop
+                        .map(
+                          (shopModel) => SizedBox(
+                            width: 300,
+                            height: 240,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 4,
+                                    right: 4,
+                                  ),
+                                  child: SizedBox(
+                                    width: 300,
+                                    height: 150,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image(
+                                        image: AssetImage(shopModel.image),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 4, right: 4, top: 4),
+                                  child: Container(
+                                    width: 300,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              shopModel.nameShop,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                            ),
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                            Text(shopModel.rating.toString()),
+                                          ],
+                                        ),
+                                        const Text("\$\$ Beverages"),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.delivery_dining,
+                                            ),
+                                            Text('\$ ${shopModel.delivery}'),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 4, right: 4, top: 4),
-                            child: Container(
-                              width: 300,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Text(
-                                        "TUBE COFFEE(Toul Tompong)",
-                                        style: TextStyle(
-                                            fontSize: 16, color: Colors.black),
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                      ),
-                                      Text("4.4"),
-                                    ],
-                                  ),
-                                  const Text("\$\$ Beverages"),
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.delivery_dining,
-                                      ),
-                                      Text("\$ 0.95"),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                        )
+                        .toList(),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
