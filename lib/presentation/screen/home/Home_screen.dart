@@ -143,87 +143,142 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.grey.withOpacity(0.5),
-                          //     spreadRadius: 5,
-                          //     blurRadius: 7,
-                          //     offset: const Offset(0, 3),
-                          //   ),
-                          // ],
-                        ),
-                        width: double.infinity,
-                        height: 200,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(14),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: const Offset(0, 3),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey[300],
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.grey.withOpacity(0.5),
+                        //     spreadRadius: 5,
+                        //     blurRadius: 7,
+                        //     offset: const Offset(0, 3),
+                        //   ),
+                        // ],
+                      ),
+                      width: double.infinity,
+                      height: 250,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              height: 300,
+                              width: 170,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Stack(
+                                  children: [
+                                    const Text(
+                                      "ហាង​ទំនិញ",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.black),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 30),
+                                      child: Text(
+                                        "គ្រឿងទេស និង ច្រេីនមុខទៀត",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black87),
+                                      ),
+                                    ),
+                                    const Positioned(
+                                      child: SizedBox(
+                                        width: 200,
+                                        height: 100,
+                                        child: Image(
+                                          image: AssetImage(
+                                              "assets/hangtomninh.jpg"),
+                                        ),
+                                      ),
+                                      bottom: -1,
+                                      right: -20,
                                     ),
                                   ],
                                 ),
-                                height: 170,
-                                width: 150,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Stack(
-                                    children: [
-                                      const Text(
-                                        "ហាង​ទំនិញ",
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.black),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(top: 30),
-                                        child: Text(
-                                          "គ្រឿងទេស និង ច្រេីនមុខទៀត",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black87),
-                                        ),
-                                      ),
-                                      const Positioned(
-                                        child: SizedBox(
-                                          width: 200,
-                                          height: 100,
-                                          child: Image(
-                                            image: AssetImage(
-                                                "assets/hangtomninh.jpg"),
-                                          ),
-                                        ),
-                                        bottom: -1,
-                                        right: -20,
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(14),
-                              child: SizedBox(
-                                height: 170,
-                                width: 160,
-                                child: Column(
-                                  children: [
-                                    Container(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: SizedBox(
+                              height: 250,
+                              width: 160,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: const Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    height: 125,
+                                    width: double.infinity,
+                                    child: Stack(
+                                      children: [
+                                        const Positioned(
+                                          child: SizedBox(
+                                            width: 150,
+                                            height: 100,
+                                            child: Image(
+                                              image: AssetImage(
+                                                  "assets/panda_mart.jpg"),
+                                            ),
+                                          ),
+                                          bottom: -1,
+                                          right: -10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                "pandamart",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.black),
+                                              ),
+                                              const Text(
+                                                "ដឹកលឿន, ចុះដល់៤០%",
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.black87),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Container(
+                                      height: 80,
+                                      width: double.infinity,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Colors.white,
@@ -236,34 +291,49 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      height: 100,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Container(
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 5,
-                                              blurRadius: 7,
-                                              offset: const Offset(0, 3),
+                                      child: Stack(
+                                        children: [
+                                          const Positioned(
+                                            child: SizedBox(
+                                              width: 180,
+                                              height: 80,
+                                              child: Image(
+                                                image: AssetImage(
+                                                    "assets/take_away.jpg"),
+                                              ),
                                             ),
-                                          ],
-                                        ),
+                                            left: 20,
+                                            bottom: -5,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Column(
+                                              children: [
+                                                const Text(
+                                                  'ទៅយកផ្ទាល់',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.black),
+                                                ),
+                                                const Text(
+                                                  "បញ្ចុះ​ ដល់ ៥០%",
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.black87,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
