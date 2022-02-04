@@ -10,10 +10,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         preferredSize: const Size.fromHeight(200),
         child: AppBar(
           centerTitle: true,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/promotion1.png"), fit: BoxFit.fill),
+          flexibleSpace: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(50),
+              bottomLeft: Radius.circular(50),
+            ),
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/promotion1.png"),
+                    fit: BoxFit.fill),
+              ),
             ),
           ),
           title: const Text(
@@ -22,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
           ),
           backgroundColor: Colors.pink,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(50),
               bottomLeft: Radius.circular(50),
