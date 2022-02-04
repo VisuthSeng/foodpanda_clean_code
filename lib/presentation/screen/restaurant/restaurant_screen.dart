@@ -3,6 +3,7 @@ import 'package:foodpanda_clean_code/core/constant/app_foodtype.dart';
 import 'package:foodpanda_clean_code/core/constant/app_promotion.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart';
 import 'package:get/get.dart';
 
 class RestarauntScreen extends StatelessWidget {
@@ -129,70 +130,77 @@ class RestarauntScreen extends StatelessWidget {
                   () => Row(
                     children: shopController.listShop
                         .map(
-                          (shopModel) => SizedBox(
-                            width: 300,
-                            height: 240,
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 4,
-                                    right: 4,
-                                  ),
-                                  child: SizedBox(
-                                    width: 300,
-                                    height: 150,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image(
-                                        image: AssetImage(shopModel.image),
-                                        fit: BoxFit.fill,
+                          (shopModel) => GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                () => const OrderScreen(),
+                              );
+                            },
+                            child: SizedBox(
+                              width: 300,
+                              height: 240,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 4,
+                                      right: 4,
+                                    ),
+                                    child: SizedBox(
+                                      width: 300,
+                                      height: 150,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image(
+                                          image: AssetImage(shopModel.image),
+                                          fit: BoxFit.fill,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 4, right: 4, top: 4),
-                                  child: Container(
-                                    width: 300,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4, right: 4, top: 4),
+                                    child: Container(
+                                      width: 300,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                shopModel.nameShop,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                              ),
+                                              const Icon(
+                                                Icons.star,
+                                                color: Colors.yellow,
+                                              ),
+                                              Text(shopModel.rating.toString()),
+                                            ],
+                                          ),
+                                          const Text("\$\$ Beverages"),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.delivery_dining,
+                                              ),
+                                              Text('\$ ${shopModel.delivery}'),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              shopModel.nameShop,
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black),
-                                            ),
-                                            const Icon(
-                                              Icons.star,
-                                              color: Colors.yellow,
-                                            ),
-                                            Text(shopModel.rating.toString()),
-                                          ],
-                                        ),
-                                        const Text("\$\$ Beverages"),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.delivery_dining,
-                                            ),
-                                            Text('\$ ${shopModel.delivery}'),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )

@@ -305,24 +305,24 @@ class HomeScreen extends StatelessWidget {
                                             left: 20,
                                             bottom: -5,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: Column(
-                                              children: [
-                                                const Text(
-                                                  'ទៅយកផ្ទាល់',
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: Colors.black),
-                                                ),
-                                                const Text(
-                                                  "បញ្ចុះ​ ដល់ ៥០%",
-                                                  style: TextStyle(
-                                                    fontSize: 10,
-                                                    color: Colors.black87,
-                                                  ),
-                                                ),
-                                              ],
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'ទៅយកផ្ទាល់',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 32, left: 10),
+                                            child: Text(
+                                              "បញ្ចុះ​ ដល់ ៥០%",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.black87,
+                                              ),
                                             ),
                                           ),
                                         ],
