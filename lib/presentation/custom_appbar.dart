@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(200),
+        preferredSize: const Size.fromHeight(300),
         child: AppBar(
           centerTitle: true,
           flexibleSpace: ClipRRect(
@@ -16,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               bottomLeft: Radius.circular(50),
             ),
             child: Container(
+              height: 300,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/promotion1.png"),
