@@ -13,6 +13,7 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   final CategoryController categoryController = Get.find();
+
   @override
   void initState() {
     categoryController.loadCategory();

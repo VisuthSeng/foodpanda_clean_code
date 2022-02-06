@@ -20,7 +20,6 @@ class CategoryController extends GetxController {
     deliveryTime: '15 min',
     foodinCategory: '',
   );
-
   CategoryController({
     required this.getListofCategoryByShopIdUseCase,
     required this.getListofCategoryUseCase,
