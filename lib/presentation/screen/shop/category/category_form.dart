@@ -158,7 +158,7 @@ class _CategoryFormState extends State<CategoryForm> {
       appBar: AppBar(
         title: widget.transactionMode == TransactionMode.add
             ? const Text('Add Category')
-            : const Text('Edit  Category'),
+            : const Text('Edit Category'),
         actions: [
           IconButton(
             onPressed: () {

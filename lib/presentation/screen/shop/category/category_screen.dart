@@ -16,6 +16,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void initState() {
     categoryController.loadCategory();
+
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: categoryController.listCategory
+            children: categoryController.listCategoryid
                 .map(
                   (categoryModel) => GestureDetector(
                     onTap: () {

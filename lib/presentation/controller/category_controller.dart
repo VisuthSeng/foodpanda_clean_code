@@ -12,6 +12,7 @@ class CategoryController extends GetxController {
   final DeleteCategoryUseCase deleteCategoryUseCase;
   late CategoryModel selectedCategory;
   var listCategory = RxList<CategoryModel>();
+  var listCategoryid = RxList<CategoryModel>();
   var blankcategory = CategoryModel(
     id: '',
     nameCategory: '',
@@ -33,7 +34,7 @@ class CategoryController extends GetxController {
   }
 
   loadCategoryByShopId(String shopId) async {
-    listCategory.clear();
+    listCategoryid.clear();
     // selectedCategory = blankcategory;
     var response = await getListofCategoryByShopIdUseCase.call(shopId);
     response.fold(
@@ -41,7 +42,7 @@ class CategoryController extends GetxController {
         Get.snackbar('Error', 'Load Data');
       },
       (r) {
-        listCategory.assignAll(r);
+        listCategoryid.assignAll(r);
       },
     );
   }
