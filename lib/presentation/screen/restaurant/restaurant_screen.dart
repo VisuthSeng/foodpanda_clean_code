@@ -1,9 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/core/constant/app_foodtype.dart';
 import 'package:foodpanda_clean_code/core/constant/app_promotion.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
-import 'package:foodpanda_clean_code/presentation/custom_appbar.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart';
 import 'package:get/get.dart';
@@ -135,7 +133,9 @@ class RestarauntScreen extends StatelessWidget {
                           (shopModel) => GestureDetector(
                             onTap: () {
                               Get.to(
-                                () => const OrderScreen(),
+                                () => const OrderScreen(
+                                  title: '',
+                                ),
                               );
                             },
                             child: SizedBox(
