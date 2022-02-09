@@ -11,11 +11,24 @@ class CategoryController extends GetxController {
   final UpdateCategoryUseCase updateCategoryUseCase;
   final DeleteCategoryUseCase deleteCategoryUseCase;
   late CategoryModel selectedCategory;
+  late Food selectedFood;
   var listCategory = RxList<CategoryModel>();
   var listCategoryid = RxList<CategoryModel>();
+  var listFood = RxList<Food>();
   var blankcategory = CategoryModel(
     id: '',
     nameCategory: '',
+    title: '',
+    subtitle: '',
+    foods: [
+      Food(
+        name: '',
+        comparePrice: '',
+        imageUrl: '',
+        isHotSale: true,
+        price: '',
+      ),
+    ],
     shopID: '',
     deliveryTime: '15 min',
     foodinCategory: '',
@@ -27,6 +40,10 @@ class CategoryController extends GetxController {
     required this.updateCategoryUseCase,
     required this.deleteCategoryUseCase,
   });
+
+  selectFood(Food food) {
+    selectedFood = food;
+  }
 
   selectCategory(CategoryModel model) {
     selectedCategory = model;

@@ -134,7 +134,7 @@ class ExampleData {
       (index) {
         return Food(
           name: "Rice with Chicken Grill ",
-          price: "5 \$",
+          price: "3 \$",
           comparePrice: "7 \$",
           imageUrl: images[index % images.length],
           isHotSale: index == 3 ? true : false,

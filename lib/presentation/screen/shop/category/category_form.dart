@@ -28,6 +28,13 @@ class _CategoryFormState extends State<CategoryForm> {
   final ShopController shopController = Get.find();
   final CategoryController categoryController = Get.find();
   late TextEditingController tecNameCategory;
+  late TextEditingController tecTitle;
+  late TextEditingController tecSubtitle;
+  late TextEditingController tecFoodName;
+  late TextEditingController tecPrice;
+  late TextEditingController tecComparePrice;
+  late TextEditingController tecimageAssets;
+  late TextEditingController tecFood;
   late TextEditingController tecDeliveryTime;
   late TextEditingController tecFoodinCategory;
 
@@ -38,6 +45,30 @@ class _CategoryFormState extends State<CategoryForm> {
     tecNameCategory = TextEditingController();
     if (widget.transactionMode == TransactionMode.edit) {
       tecNameCategory.text = categoryController.selectedCategory.nameCategory;
+    }
+    tecTitle = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecTitle.text = categoryController.selectedCategory.title;
+    }
+    tecSubtitle = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecSubtitle.text = categoryController.selectedCategory.subtitle;
+    }
+    tecFoodName = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecFoodName.text = categoryController.selectedFood.name;
+    }
+    tecPrice = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecPrice.text = categoryController.selectedFood.price;
+    }
+    tecComparePrice = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecComparePrice.text = categoryController.selectedFood.comparePrice;
+    }
+    tecimageAssets = TextEditingController();
+    if (widget.transactionMode == TransactionMode.edit) {
+      tecimageAssets.text = categoryController.selectedFood.imageUrl;
     }
     tecDeliveryTime = TextEditingController();
     if (widget.transactionMode == TransactionMode.edit) {
@@ -54,8 +85,14 @@ class _CategoryFormState extends State<CategoryForm> {
 
   @override
   void dispose() {
-    tecDeliveryTime.dispose();
     tecNameCategory.dispose();
+    tecTitle.dispose();
+    tecSubtitle.dispose();
+    tecFoodName.dispose();
+    tecPrice.dispose();
+    tecComparePrice.dispose();
+    tecimageAssets.dispose();
+    tecDeliveryTime.dispose();
     tecFoodinCategory.dispose();
 
     super.dispose();
@@ -170,6 +207,9 @@ class _CategoryFormState extends State<CategoryForm> {
                   deliveryTime: tecDeliveryTime.text,
                   foodinCategory: tecFoodinCategory.text,
                   shopID: shopController.selectedShop.id,
+                  foods: [],
+                  title: tecTitle.text,
+                  subtitle: tecSubtitle.text,
                 );
                 saveCategory(model);
               } else {
@@ -179,6 +219,17 @@ class _CategoryFormState extends State<CategoryForm> {
                   foodinCategory: tecFoodinCategory.text,
                   id: categoryController.selectedCategory.id,
                   shopID: shopController.selectedShop.id,
+                  foods: [
+                    Food(
+                      name: '',
+                      price: '',
+                      comparePrice: '',
+                      imageUrl: '',
+                      isHotSale: true,
+                    ),
+                  ],
+                  title: tecTitle.text,
+                  subtitle: tecSubtitle.text,
                 );
                 updateCategory(model);
               }
@@ -196,9 +247,45 @@ class _CategoryFormState extends State<CategoryForm> {
             ),
           ),
           TextField(
+            controller: tecTitle,
+            decoration: const InputDecoration(
+              labelText: 'Title',
+            ),
+          ),
+          TextField(
+            controller: tecSubtitle,
+            decoration: const InputDecoration(
+              labelText: 'Subtitle',
+            ),
+          ),
+          TextField(
+            controller: tecFoodName,
+            decoration: const InputDecoration(
+              labelText: 'Food name',
+            ),
+          ),
+          TextField(
+            controller: tecPrice,
+            decoration: const InputDecoration(
+              labelText: 'Price',
+            ),
+          ),
+          TextField(
+            controller: tecComparePrice,
+            decoration: const InputDecoration(
+              labelText: 'Compare Price',
+            ),
+          ),
+          TextField(
+            controller: tecimageAssets,
+            decoration: const InputDecoration(
+              labelText: 'Image assets',
+            ),
+          ),
+          TextField(
             controller: tecFoodinCategory,
             decoration: const InputDecoration(
-              labelText: 'Food',
+              labelText: 'Food in Category',
             ),
           ),
           TextField(

@@ -115,3 +115,33 @@ class CategoryDataSource extends ICategoryDataSource {
     }
   }
 }
+
+class Category {
+  String title;
+  String? subtitle;
+  List<Food> foods;
+  bool isHotSale;
+
+  Category({
+    required this.title,
+    required this.subtitle,
+    required this.foods,
+    required this.isHotSale,
+  });
+}
+
+class Food {
+  String name;
+  String price;
+  String comparePrice;
+  String imageUrl;
+  bool isHotSale;
+
+  Food({
+    required this.name,
+    required this.price,
+    required this.comparePrice,
+    required this.imageUrl,
+    required this.isHotSale,
+  });
+}
