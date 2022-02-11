@@ -1,5 +1,3 @@
-// // ignore_for_file: avoid_print
-
 // import 'package:flutter/material.dart';
 // import 'package:foodpanda_clean_code/data/datasource/api.dart';
 // import 'package:vertical_tab_bar_view/vertical_tab_bar_view.dart';
@@ -329,7 +327,6 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:foodpanda_clean_code/data/datasource/example_data.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/category_section.dart';
@@ -372,8 +369,6 @@ class _MyHomePageState extends State<OrderScreen>
         tabController: tabController,
         listItemData: categoryController.listCategoryid,
         verticalScrollPosition: VerticalScrollPosition.begin,
-        eachItemChild: (object, index) =>
-            CategorySection(categoryModel: object as CategoryModel),
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.white,
@@ -406,7 +401,7 @@ class _MyHomePageState extends State<OrderScreen>
               unselectedLabelColor: Colors.black,
               indicatorWeight: 3.0,
               tabs: categoryController.listCategoryid.map((e) {
-                return Tab(text: e.title);
+                return Tab(text: e.subtitle);
               }).toList(),
               onTap: (index) {
                 VerticalScrollableTabBarStatus.setIndex(index);
@@ -414,6 +409,8 @@ class _MyHomePageState extends State<OrderScreen>
             ),
           ),
         ],
+        eachItemChild: (object, index) =>
+            CategorySection(categoryModel: object as CategoryModel),
       ),
     );
   }

@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => RestarauntScreen());
+                        Get.to(() => const RestarauntScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10),

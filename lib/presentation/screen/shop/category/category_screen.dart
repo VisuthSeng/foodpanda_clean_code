@@ -15,13 +15,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
   final CategoryController categoryController = Get.find();
 
   @override
-  void initState() {
-    categoryController.loadCategory();
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodpanda_clean_code/data/datasource/example_data.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 
 class CategorySection extends StatelessWidget {
@@ -100,14 +99,14 @@ class CategorySection extends StatelessWidget {
       children: [
         Text(
           food.name,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
         const SizedBox(height: 16),
         Row(
           children: [
             Text(
               "" + food.price + " ",
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             Text(
               food.comparePrice,

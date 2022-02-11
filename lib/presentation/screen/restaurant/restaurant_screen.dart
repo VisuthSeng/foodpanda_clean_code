@@ -8,7 +8,7 @@ import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart
 import 'package:get/get.dart';
 
 class RestarauntScreen extends StatefulWidget {
-  RestarauntScreen({Key? key}) : super(key: key);
+  const RestarauntScreen({Key? key}) : super(key: key);
 
   @override
   State<RestarauntScreen> createState() => _RestarauntScreenState();
@@ -16,10 +16,9 @@ class RestarauntScreen extends StatefulWidget {
 
 class _RestarauntScreenState extends State<RestarauntScreen> {
   final ShopController shopController = Get.find();
-  final CategoryController categoryController = Get.find();
+
   @override
   void initState() {
-    categoryController.loadCategory();
     super.initState();
   }
 
@@ -145,6 +144,10 @@ class _RestarauntScreenState extends State<RestarauntScreen> {
                         .map(
                           (shopModel) => GestureDetector(
                             onTap: () {
+                              // final CategoryController categoryController =
+                              //     Get.find();
+                              // categoryController
+                              //     .loadCategoryByShopId(shopModel.id);
                               Get.to(
                                 () => const OrderScreen(
                                   title: '',
