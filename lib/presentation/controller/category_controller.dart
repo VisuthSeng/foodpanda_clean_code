@@ -85,6 +85,7 @@ class CategoryController extends GetxController {
       },
       (r) {
         listCategory.add(model);
+
         listCategoryid.add(model);
         Get.back();
       },

@@ -330,7 +330,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/datasource/example_data.dart';
+import 'package:foodpanda_clean_code/data/model/category_model.dart';
+import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/category_section.dart';
+import 'package:get/get.dart';
 import 'package:vertical_scrollable_tabview/vertical_scrollable_tabview.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -343,14 +346,15 @@ class OrderScreen extends StatefulWidget {
 
 class _MyHomePageState extends State<OrderScreen>
     with SingleTickerProviderStateMixin {
-  final List<Category> data = ExampleData.data;
+  final CategoryController categoryController = Get.find();
 
   // TabController More Information => https://api.flutter.dev/flutter/material/TabController-class.html
   late TabController tabController;
 
   @override
   void initState() {
-    tabController = TabController(length: data.length, vsync: this);
+    tabController = TabController(
+        length: categoryController.listCategoryid.length, vsync: this);
     super.initState();
   }
 
@@ -366,10 +370,10 @@ class _MyHomePageState extends State<OrderScreen>
       backgroundColor: Colors.white,
       body: VerticalScrollableTabView(
         tabController: tabController,
-        listItemData: data,
+        listItemData: categoryController.listCategoryid,
         verticalScrollPosition: VerticalScrollPosition.begin,
         eachItemChild: (object, index) =>
-            CategorySection(category: object as Category),
+            CategorySection(categoryModel: object as CategoryModel),
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.white,
@@ -401,7 +405,7 @@ class _MyHomePageState extends State<OrderScreen>
               labelColor: Colors.pinkAccent,
               unselectedLabelColor: Colors.black,
               indicatorWeight: 3.0,
-              tabs: data.map((e) {
+              tabs: categoryController.listCategoryid.map((e) {
                 return Tab(text: e.title);
               }).toList(),
               onTap: (index) {

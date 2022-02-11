@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/core/constant/app_foodtype.dart';
 import 'package:foodpanda_clean_code/core/constant/app_promotion.dart';
+import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart';
 import 'package:get/get.dart';
 
-class RestarauntScreen extends StatelessWidget {
-  final ShopController shopController = Get.find();
+class RestarauntScreen extends StatefulWidget {
   RestarauntScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RestarauntScreen> createState() => _RestarauntScreenState();
+}
+
+class _RestarauntScreenState extends State<RestarauntScreen> {
+  final ShopController shopController = Get.find();
+  final CategoryController categoryController = Get.find();
+  @override
+  void initState() {
+    categoryController.loadCategory();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

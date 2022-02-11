@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/datasource/example_data.dart';
+import 'package:foodpanda_clean_code/data/model/category_model.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({
     Key? key,
-    required this.category,
+    required this.categoryModel,
   }) : super(key: key);
 
-  final Category category;
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,61 +19,49 @@ class CategorySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTileHeader(context),
-          _buildFoodTileList(context),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Text(
+                    categoryModel.title,
+                    style: _textTheme(context).headline5,
+                  )
+                ],
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  Text(
+                    categoryModel.subtitle,
+                    style: _textTheme(context).headline6,
+                  )
+                ],
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+          categoryModel.foods != null
+              ? Column(
+                  children: List.generate(
+                    categoryModel.foods!.length,
+                    (index) {
+                      final food = categoryModel.foods![index];
+                      bool isLastIndex =
+                          index == categoryModel.foods!.length - 1;
+                      return _buildFoodTile(
+                        food: food,
+                        context: context,
+                        isLastIndex: isLastIndex,
+                      );
+                    },
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
-    );
-  }
-
-  Widget _buildFoodTileList(BuildContext context) {
-    return Column(
-      children: List.generate(
-        category.foods.length,
-        (index) {
-          final food = category.foods[index];
-          bool isLastIndex = index == category.foods.length - 1;
-          return _buildFoodTile(
-            food: food,
-            context: context,
-            isLastIndex: isLastIndex,
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildSectionTileHeader(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        _sectionTitle(context),
-        const SizedBox(height: 8.0),
-        category.subtitle != null
-            ? _sectionSubtitle(context)
-            : const SizedBox(),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _sectionTitle(BuildContext context) {
-    return Row(
-      children: [
-        if (category.isHotSale) _buildSectionHoteSaleIcon(),
-        Text(
-          category.title,
-          style: _textTheme(context).headline6,
-        )
-      ],
-    );
-  }
-
-  Widget _sectionSubtitle(BuildContext context) {
-    return Text(
-      category.subtitle!,
-      style: _textTheme(context).subtitle2,
     );
   }
 
@@ -87,7 +76,7 @@ class CategorySection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildFoodDetail(food: food, context: context),
-            // _buildFoodImage(food.imageUrl),
+            _buildFoodImage(food.imageUrl),
           ],
         ),
         !isLastIndex ? const Divider(height: 16.0) : const SizedBox(height: 8.0)
@@ -95,12 +84,12 @@ class CategorySection extends StatelessWidget {
     );
   }
 
-  // Widget _buildFoodImage(String url) {
-  //   return Image(
-  //     image: AssetImage("assets/starbuck.jpg"),
-  //     fit: BoxFit.fill,
-  //   );
-  // }
+  Widget _buildFoodImage(String url) {
+    return Image(
+      image: AssetImage(url),
+      fit: BoxFit.fill,
+    );
+  }
 
   Widget _buildFoodDetail({
     required BuildContext context,
@@ -109,13 +98,16 @@ class CategorySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(food.name, style: _textTheme(context).subtitle1),
+        Text(
+          food.name,
+          style: TextStyle(color: Colors.black),
+        ),
         const SizedBox(height: 16),
         Row(
           children: [
             Text(
               "" + food.price + " ",
-              style: _textTheme(context).caption,
+              style: TextStyle(color: Colors.black),
             ),
             Text(
               food.comparePrice,
@@ -128,17 +120,6 @@ class CategorySection extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildSectionHoteSaleIcon() {
-    return Container(
-      margin: const EdgeInsets.only(right: 4.0),
-      child: const Icon(
-        Icons.whatshot,
-        color: Colors.pink,
-        size: 20.0,
-      ),
     );
   }
 
