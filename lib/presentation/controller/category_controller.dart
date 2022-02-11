@@ -85,6 +85,7 @@ class CategoryController extends GetxController {
       },
       (r) {
         listCategory.add(model);
+        listCategoryid.add(model);
         Get.back();
       },
     );
@@ -101,6 +102,7 @@ class CategoryController extends GetxController {
           (x) => x.id == model.id,
         );
         listCategory[id] = model;
+        listCategoryid[id] = model;
         Get.back();
       },
     );
@@ -114,6 +116,7 @@ class CategoryController extends GetxController {
       },
       (r) {
         listCategory.removeWhere((x) => x.id == recordId);
+        listCategoryid.removeWhere((x) => x.id == recordId);
       },
     );
   }
