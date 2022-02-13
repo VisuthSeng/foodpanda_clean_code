@@ -330,6 +330,8 @@ import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/category_section.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/widget/header_clip.dart';
+
 import 'package:get/get.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:vertical_scrollable_tabview/vertical_scrollable_tabview.dart';
@@ -351,7 +353,6 @@ class _MyHomePageState extends State<OrderScreen>
 
   @override
   void initState() {
-    tabController = TabController(length: 5, vsync: this);
     scrollController = AutoScrollController();
     categoryController.loadCategory();
     categoryController.listCategory();
@@ -365,7 +366,7 @@ class _MyHomePageState extends State<OrderScreen>
   void dispose() {
     scrollController.dispose();
     tabController.dispose();
-    tabController.dispose();
+
     super.dispose();
   }
 
@@ -402,10 +403,14 @@ class _MyHomePageState extends State<OrderScreen>
                 titlePadding: const EdgeInsets.only(bottom: 50),
                 collapseMode: CollapseMode.pin,
                 background: Column(
-                  children: const [
-                    Image(
-                      image: AssetImage("assets/starbuck.jpg"),
-                      fit: BoxFit.fill,
+                  children: [
+                    Stack(
+                      children: [
+                        HeaderClip(context: context),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                      ],
                     ),
                   ],
                 ),

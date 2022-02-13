@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/shopping_cart_screen/shopping_cart_screen.dart';
 import 'package:foodpanda_clean_code/presentation/screen/restaurant/restaurant_screen.dart';
 import 'package:foodpanda_clean_code/presentation/screen/shop/shop_screen.dart';
 import 'package:get/get.dart';
@@ -57,7 +58,9 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const ShoppingCartScreen());
+            },
             icon: const Icon(
               Icons.favorite_border_outlined,
             ),

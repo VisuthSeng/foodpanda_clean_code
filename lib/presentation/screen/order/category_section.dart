@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 
@@ -12,7 +14,6 @@ class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       margin: const EdgeInsets.only(bottom: 16),
       color: Colors.white,
       child: Column(
@@ -24,22 +25,75 @@ class CategorySection extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  Text(
-                    categoryModel.title,
-                    style: _textTheme(context).headline5,
-                  )
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      categoryModel.title,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Text(
-                    categoryModel.subtitle,
-                    style: _textTheme(context).headline6,
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Row(
+                  children: [
+                    Text(
+                      categoryModel.subtitle,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 16),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        child: Text('Coffee Cappucino'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30, left: 15),
+                        child: Row(
+                          children: const [
+                            Text('\$ 1.50 '),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.fireplace),
+                            Text('ពេញនិយម'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Column(
+                      children: const [
+                        SizedBox(
+                          height: 100,
+                          width: 200,
+                          child: Image(
+                            image: AssetImage(
+                              'assets/starbuck.jpg',
+                            ),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           // categoryModel.foods != null
@@ -59,6 +113,14 @@ class CategorySection extends StatelessWidget {
           //         ),
           //       )
           //     : const SizedBox.shrink(),
+
+          Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Container(
+                width: double.infinity,
+                height: 1,
+                color: Colors.grey[400],
+              )),
         ],
       ),
     );
