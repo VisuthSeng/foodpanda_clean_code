@@ -42,6 +42,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   (categoryModel) => GestureDetector(
                     onTap: () {
                       categoryController.selectCategory(categoryModel);
+                      Get.snackbar('hi', categoryModel.title);
                       // Get.to(
                       //   () => const ShopForm(
                       //       transactionMode: TransactionMode.edit),

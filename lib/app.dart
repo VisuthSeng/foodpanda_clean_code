@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: HomeScreen(),
       //theme: AppTheme.red(),
       // locale: AppLocalization.locale,
       // fallbackLocale: AppLocalization.fallbackLocale,
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       getPages: [
         GetPage(
           name: "/",
-          page: () => const HomeScreen(),
+          page: () => HomeScreen(),
         ),
       ],
     );

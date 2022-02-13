@@ -162,54 +162,173 @@ class HomeScreen extends StatelessWidget {
                       height: 250,
                       child: Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(14),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              height: 300,
-                              width: 170,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Stack(
-                                  children: [
-                                    const Text(
-                                      "ហាង​ទំនិញ",
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.black),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(top: 30),
-                                      child: Text(
-                                        "គ្រឿងទេស និង ច្រេីនមុខទៀត",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.black87),
-                                      ),
-                                    ),
-                                    const Positioned(
-                                      child: SizedBox(
-                                        width: 200,
-                                        height: 100,
-                                        child: Image(
-                                          image: AssetImage(
-                                              "assets/hangtomninh.jpg"),
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return SizedBox(
+                                    width: double.infinity,
+                                    height: 400,
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(
+                                          height: 200,
+                                          width: double.infinity,
+                                          child: Image(
+                                            image: AssetImage(
+                                                'assets/starbuck.jpg'),
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
-                                      ),
-                                      bottom: -1,
-                                      right: -20,
+                                        Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Text('បាយសាច់ជ្រូក'),
+                                              const Text('\$ 1.50'),
+                                            ],
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Get.snackbar('បន្ថែមការណែនាំពិសេស',
+                                                'បន្ថែមការណែនាំពិសេស');
+                                          },
+                                          child: SizedBox(
+                                            height: 30,
+                                            width: double.infinity,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 25),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.add,
+                                                    color: Colors.pink,
+                                                  ),
+                                                  const Text(
+                                                    'បន្ថែមការណែនាំពិសេស',
+                                                    style: TextStyle(
+                                                        color: Colors.pink),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 40),
+                                          child: Row(
+                                            children: [
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20),
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.grey,
+                                                  child: Icon(
+                                                    Icons.remove,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20),
+                                                child: Text(
+                                                  '1',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20),
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.pink,
+                                                  child: Icon(
+                                                    Icons.add,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20, right: 10),
+                                                child: SizedBox(
+                                                  width: 200,
+                                                  child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary: Colors.pink,
+                                                      ),
+                                                      onPressed: () {},
+                                                      child: const Text(
+                                                          'ដាក់ថែមក្នុងកន្ត្រក')),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(14),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
                                     ),
                                   ],
+                                ),
+                                height: 300,
+                                width: 170,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Stack(
+                                    children: [
+                                      const Text(
+                                        "ហាង​ទំនិញ",
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.black),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 30),
+                                        child: Text(
+                                          "គ្រឿងទេស និង ច្រេីនមុខទៀត",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black87),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        child: SizedBox(
+                                          width: 200,
+                                          height: 100,
+                                          child: Image(
+                                            image: AssetImage(
+                                                "assets/hangtomninh.jpg"),
+                                          ),
+                                        ),
+                                        bottom: -1,
+                                        right: -20,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

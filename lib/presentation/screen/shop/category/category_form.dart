@@ -55,21 +55,21 @@ class _CategoryFormState extends State<CategoryForm> {
       tecSubtitle.text = categoryController.selectedCategory.subtitle;
     }
     tecFoodName = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecFoodName.text = categoryController.selectedFood.name;
-    }
-    tecPrice = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecPrice.text = categoryController.selectedFood.price;
-    }
-    tecComparePrice = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecComparePrice.text = categoryController.selectedFood.comparePrice;
-    }
-    tecimageAssets = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecimageAssets.text = categoryController.selectedFood.imageUrl;
-    }
+    // if (widget.transactionMode == TransactionMode.edit) {
+    //   tecFoodName.text = categoryController.selectedCategory.foods.add();
+    // }
+    // tecPrice = TextEditingController();
+    // if (widget.transactionMode == TransactionMode.edit) {
+    //   tecPrice.text = categoryController.selectedFood.price;
+    // }
+    // tecComparePrice = TextEditingController();
+    // if (widget.transactionMode == TransactionMode.edit) {
+    //   tecComparePrice.text = categoryController.selectedFood.comparePrice;
+    // }
+    // tecimageAssets = TextEditingController();
+    // if (widget.transactionMode == TransactionMode.edit) {
+    //   tecimageAssets.text = categoryController.selectedFood.imageUrl;
+    // }
     tecDeliveryTime = TextEditingController();
     if (widget.transactionMode == TransactionMode.edit) {
       tecDeliveryTime.text = categoryController.selectedCategory.deliveryTime;

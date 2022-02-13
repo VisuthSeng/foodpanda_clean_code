@@ -19,6 +19,7 @@ class _RestarauntScreenState extends State<RestarauntScreen> {
 
   @override
   void initState() {
+    shopController.loadShop();
     super.initState();
   }
 
@@ -144,15 +145,15 @@ class _RestarauntScreenState extends State<RestarauntScreen> {
                         .map(
                           (shopModel) => GestureDetector(
                             onTap: () {
-                              // final CategoryController categoryController =
-                              //     Get.find();
-                              // categoryController
-                              //     .loadCategoryByShopId(shopModel.id);
                               Get.to(
-                                () => const OrderScreen(
-                                  title: '',
-                                ),
+                                () => const OrderScreen(),
                               );
+                              shopController.selectShop(shopModel);
+                              final CategoryController categoryController =
+                                  Get.find();
+                              categoryController
+                                  .loadCategoryByShopId(shopModel.id);
+                              Get.snackbar("hi", shopModel.nameShop);
                             },
                             child: SizedBox(
                               width: 300,

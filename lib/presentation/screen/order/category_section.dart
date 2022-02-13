@@ -42,23 +42,23 @@ class CategorySection extends StatelessWidget {
               const SizedBox(height: 16),
             ],
           ),
-          categoryModel.foods != null
-              ? Column(
-                  children: List.generate(
-                    categoryModel.foods!.length,
-                    (index) {
-                      final food = categoryModel.foods![index];
-                      bool isLastIndex =
-                          index == categoryModel.foods!.length - 1;
-                      return _buildFoodTile(
-                        food: food,
-                        context: context,
-                        isLastIndex: isLastIndex,
-                      );
-                    },
-                  ),
-                )
-              : const SizedBox.shrink(),
+          // categoryModel.foods != null
+          //     ? Column(
+          //         children: List.generate(
+          //           categoryModel.foods!.length,
+          //           (index) {
+          //             final food = categoryModel.foods![index];
+          //             bool isLastIndex =
+          //                 index == categoryModel.foods!.length - 1;
+          //             return _buildFoodTile(
+          //               food: food,
+          //               context: context,
+          //               isLastIndex: isLastIndex,
+          //             );
+          //           },
+          //         ),
+          //       )
+          //     : const SizedBox.shrink(),
         ],
       ),
     );

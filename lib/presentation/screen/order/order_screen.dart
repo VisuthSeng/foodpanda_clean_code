@@ -331,11 +331,11 @@ import 'package:foodpanda_clean_code/data/model/category_model.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/category_section.dart';
 import 'package:get/get.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:vertical_scrollable_tabview/vertical_scrollable_tabview.dart';
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -346,10 +346,16 @@ class _MyHomePageState extends State<OrderScreen>
   final CategoryController categoryController = Get.find();
 
   // TabController More Information => https://api.flutter.dev/flutter/material/TabController-class.html
+  late AutoScrollController scrollController;
   late TabController tabController;
 
   @override
   void initState() {
+    tabController = TabController(length: 5, vsync: this);
+    scrollController = AutoScrollController();
+    categoryController.loadCategory();
+    categoryController.listCategory();
+    categoryController.listCategoryid();
     tabController = TabController(
         length: categoryController.listCategoryid.length, vsync: this);
     super.initState();
@@ -357,6 +363,8 @@ class _MyHomePageState extends State<OrderScreen>
 
   @override
   void dispose() {
+    scrollController.dispose();
+    tabController.dispose();
     tabController.dispose();
     super.dispose();
   }
@@ -365,52 +373,63 @@ class _MyHomePageState extends State<OrderScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: VerticalScrollableTabView(
-        tabController: tabController,
-        listItemData: categoryController.listCategoryid,
-        verticalScrollPosition: VerticalScrollPosition.begin,
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            pinned: true,
-            expandedHeight: 250.0,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Pasta Corner (PTT North Bridge",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+      body: Obx(
+        () => VerticalScrollableTabView(
+          tabController: tabController,
+          listItemData: categoryController.listCategoryid,
+          verticalScrollPosition: VerticalScrollPosition.begin,
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              pinned: true,
+              expandedHeight: 250.0,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Obx(() => Row(
+                      children: categoryController.listCategoryid
+                          .map(
+                            (element) => Text(
+                              element.title,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          )
+                          .toList())),
+                ),
+                titlePadding: const EdgeInsets.only(bottom: 50),
+                collapseMode: CollapseMode.pin,
+                background: Column(
+                  children: const [
+                    Image(
+                      image: AssetImage("assets/starbuck.jpg"),
+                      fit: BoxFit.fill,
+                    ),
+                  ],
                 ),
               ),
-              titlePadding: EdgeInsets.only(bottom: 50),
-              collapseMode: CollapseMode.pin,
-              background: Image(
-                image: AssetImage("assets/pizza_type.jpg"),
-                fit: BoxFit.fill,
+              bottom: TabBar(
+                isScrollable: true,
+                controller: tabController,
+                indicatorPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+                indicatorColor: Colors.pink,
+                labelColor: Colors.pinkAccent,
+                unselectedLabelColor: Colors.black,
+                indicatorWeight: 3.0,
+                tabs: categoryController.listCategoryid.map((e) {
+                  return Tab(text: e.subtitle);
+                }).toList(),
+                onTap: (index) {
+                  VerticalScrollableTabBarStatus.setIndex(index);
+                },
               ),
             ),
-            bottom: TabBar(
-              isScrollable: true,
-              controller: tabController,
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-              indicatorColor: Colors.pink,
-              labelColor: Colors.pinkAccent,
-              unselectedLabelColor: Colors.black,
-              indicatorWeight: 3.0,
-              tabs: categoryController.listCategoryid.map((e) {
-                return Tab(text: e.subtitle);
-              }).toList(),
-              onTap: (index) {
-                VerticalScrollableTabBarStatus.setIndex(index);
-              },
-            ),
-          ),
-        ],
-        eachItemChild: (object, index) =>
-            CategorySection(categoryModel: object as CategoryModel),
+          ],
+          eachItemChild: (object, index) =>
+              CategorySection(categoryModel: object as CategoryModel),
+        ),
       ),
     );
   }
