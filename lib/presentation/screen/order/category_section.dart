@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/shopping_cart_screen/shopping_cart_screen.dart';
+import 'package:get/get.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({
@@ -48,51 +50,173 @@ class CategorySection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20, left: 15),
-                        child: Text('Coffee Cappucino'),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30, left: 15),
-                        child: Row(
-                          children: const [
-                            Text('\$ 1.50 '),
-                            SizedBox(
-                              width: 10,
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 400,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 200,
+                              width: double.infinity,
+                              child: Image(
+                                image: AssetImage('assets/starbuck.jpg'),
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                            Icon(Icons.fireplace),
-                            Text('ពេញនិយម'),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text('បាយសាច់ជ្រូក'),
+                                  Text('\$ 1.50'),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.snackbar('បន្ថែមការណែនាំពិសេស',
+                                    'បន្ថែមការណែនាំពិសេស');
+                              },
+                              child: SizedBox(
+                                height: 30,
+                                width: double.infinity,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 25),
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.add,
+                                        color: Colors.pink,
+                                      ),
+                                      Text(
+                                        'បន្ថែមការណែនាំពិសេស',
+                                        style: TextStyle(color: Colors.pink),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: Row(
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.grey,
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      '1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.pink,
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, right: 10),
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.pink,
+                                          ),
+                                          onPressed: () {
+                                            Get.to(() =>
+                                                const ShoppingCartScreen());
+                                          },
+                                          child: const Text(
+                                              'ដាក់ថែមក្នុងកន្ត្រក')),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Column(
-                      children: const [
-                        SizedBox(
-                          height: 100,
-                          width: 200,
-                          child: Image(
-                            image: AssetImage(
-                              'assets/starbuck.jpg',
-                            ),
-                            fit: BoxFit.fill,
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          child: Text(
+                            'Coffee Cappucino',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30, left: 15),
+                          child: Row(
+                            children: const [
+                              Text('\$ 1.50 '),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                Icons.fireplace,
+                                color: Colors.pink,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 10),
+                                child: Text('ពេញនិយម'),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        children: const [
+                          SizedBox(
+                            height: 100,
+                            width: 200,
+                            child: Image(
+                              image: AssetImage(
+                                'assets/starbuck.jpg',
+                              ),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
