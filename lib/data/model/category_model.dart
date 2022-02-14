@@ -37,23 +37,22 @@ class Food {
 
 class CategoryModel {
   final String id;
+  final String shopID;
   final String nameCategory;
   final String title;
   final String subtitle;
   final List<Food>? foods;
-  final String shopID;
+
   final String deliveryTime;
-  final String foodinCategory;
 
   CategoryModel({
     required this.id,
     required this.title,
     required this.subtitle,
     required this.nameCategory,
-    required this.foods,
+    this.foods,
     required this.shopID,
     required this.deliveryTime,
-    required this.foodinCategory,
   });
   CategoryModel copyWith({
     String? id,
@@ -73,7 +72,6 @@ class CategoryModel {
       foods: foods ?? this.foods,
       shopID: shopID ?? this.shopID,
       deliveryTime: deliveryTime ?? this.deliveryTime,
-      foodinCategory: foodinCategory ?? this.foodinCategory,
     );
   }
 
@@ -86,7 +84,6 @@ class CategoryModel {
       'foods': foods?.map((x) => x.toMap()).toList(),
       'shopID': shopID,
       'deliveryTime': deliveryTime,
-      'foodinCategory': foodinCategory,
     };
   }
 
@@ -105,7 +102,6 @@ class CategoryModel {
       foods: listFood,
       shopID: doc['shopID'] ?? '',
       deliveryTime: doc['deliveryTime'] ?? '',
-      foodinCategory: doc['foodinCategory'] ?? '',
     );
   }
 }

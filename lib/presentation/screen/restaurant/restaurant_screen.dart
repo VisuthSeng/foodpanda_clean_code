@@ -4,7 +4,7 @@ import 'package:foodpanda_clean_code/core/constant/app_promotion.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/item/searchbox.dart';
-import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/display_order_screen.dart';
 import 'package:get/get.dart';
 
 class RestarauntScreen extends StatefulWidget {
@@ -145,15 +145,16 @@ class _RestarauntScreenState extends State<RestarauntScreen> {
                         .map(
                           (shopModel) => GestureDetector(
                             onTap: () {
-                              Get.to(
-                                () => const OrderScreen(),
-                              );
-                              shopController.selectShop(shopModel);
+                              // shopController.selectShop(shopModel);
                               final CategoryController categoryController =
                                   Get.find();
                               categoryController
                                   .loadCategoryByShopId(shopModel.id);
                               Get.snackbar("hi", shopModel.nameShop);
+
+                              Get.to(
+                                () => DisplayOrderScreen(),
+                              );
                             },
                             child: SizedBox(
                               width: 300,

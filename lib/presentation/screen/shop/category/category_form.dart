@@ -7,6 +7,7 @@ import 'package:foodpanda_clean_code/data/model/category_model.dart';
 
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
+import 'package:foodpanda_clean_code/presentation/screen/shop/category/food_form.dart';
 
 import 'package:get/get.dart';
 
@@ -30,54 +31,22 @@ class _CategoryFormState extends State<CategoryForm> {
   late TextEditingController tecNameCategory;
   late TextEditingController tecTitle;
   late TextEditingController tecSubtitle;
-  late TextEditingController tecFoodName;
-  late TextEditingController tecPrice;
-  late TextEditingController tecComparePrice;
-  late TextEditingController tecimageAssets;
-  late TextEditingController tecFood;
+
   late TextEditingController tecDeliveryTime;
-  late TextEditingController tecFoodinCategory;
 
   File? pictureFile;
 
   @override
   void initState() {
     tecNameCategory = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecNameCategory.text = categoryController.selectedCategory.nameCategory;
-    }
     tecTitle = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecTitle.text = categoryController.selectedCategory.title;
-    }
     tecSubtitle = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecSubtitle.text = categoryController.selectedCategory.subtitle;
-    }
-    tecFoodName = TextEditingController();
-    // if (widget.transactionMode == TransactionMode.edit) {
-    //   tecFoodName.text = categoryController.selectedCategory.foods.add();
-    // }
-    // tecPrice = TextEditingController();
-    // if (widget.transactionMode == TransactionMode.edit) {
-    //   tecPrice.text = categoryController.selectedFood.price;
-    // }
-    // tecComparePrice = TextEditingController();
-    // if (widget.transactionMode == TransactionMode.edit) {
-    //   tecComparePrice.text = categoryController.selectedFood.comparePrice;
-    // }
-    // tecimageAssets = TextEditingController();
-    // if (widget.transactionMode == TransactionMode.edit) {
-    //   tecimageAssets.text = categoryController.selectedFood.imageUrl;
-    // }
     tecDeliveryTime = TextEditingController();
     if (widget.transactionMode == TransactionMode.edit) {
+      tecNameCategory.text = categoryController.selectedCategory.nameCategory;
+      tecTitle.text = categoryController.selectedCategory.title;
+      tecSubtitle.text = categoryController.selectedCategory.subtitle;
       tecDeliveryTime.text = categoryController.selectedCategory.deliveryTime;
-    }
-    tecFoodinCategory = TextEditingController();
-    if (widget.transactionMode == TransactionMode.edit) {
-      tecFoodinCategory.text =
-          categoryController.selectedCategory.foodinCategory;
     }
 
     super.initState();
@@ -88,12 +57,8 @@ class _CategoryFormState extends State<CategoryForm> {
     tecNameCategory.dispose();
     tecTitle.dispose();
     tecSubtitle.dispose();
-    tecFoodName.dispose();
-    tecPrice.dispose();
-    tecComparePrice.dispose();
-    tecimageAssets.dispose();
+
     tecDeliveryTime.dispose();
-    tecFoodinCategory.dispose();
 
     super.dispose();
   }
@@ -205,31 +170,27 @@ class _CategoryFormState extends State<CategoryForm> {
                   id: id,
                   nameCategory: tecNameCategory.text,
                   deliveryTime: tecDeliveryTime.text,
-                  foodinCategory: tecFoodinCategory.text,
                   shopID: shopController.selectedShop.id,
-                  foods: [],
+                  foods: categoryController.listFood.isEmpty
+                      ? null
+                      : categoryController.listFood,
                   title: tecTitle.text,
                   subtitle: tecSubtitle.text,
                 );
                 saveCategory(model);
               } else {
                 var model = CategoryModel(
-                  nameCategory: tecNameCategory.text,
-                  deliveryTime: tecDeliveryTime.text,
-                  foodinCategory: tecFoodinCategory.text,
+                  nameCategory:
+                      categoryController.selectedCategory.nameCategory,
+                  deliveryTime:
+                      categoryController.selectedCategory.deliveryTime,
                   id: categoryController.selectedCategory.id,
                   shopID: shopController.selectedShop.id,
-                  foods: [
-                    Food(
-                      name: '',
-                      price: '',
-                      comparePrice: '',
-                      imageUrl: '',
-                      isHotSale: true,
-                    ),
-                  ],
-                  title: tecTitle.text,
-                  subtitle: tecSubtitle.text,
+                  foods: categoryController.listFood.isEmpty
+                      ? null
+                      : categoryController.listFood,
+                  title: categoryController.selectedCategory.title,
+                  subtitle: categoryController.selectedCategory.subtitle,
                 );
                 updateCategory(model);
               }
@@ -258,36 +219,31 @@ class _CategoryFormState extends State<CategoryForm> {
               labelText: 'Subtitle',
             ),
           ),
-          TextField(
-            controller: tecFoodName,
-            decoration: const InputDecoration(
-              labelText: 'Food name',
-            ),
-          ),
-          TextField(
-            controller: tecPrice,
-            decoration: const InputDecoration(
-              labelText: 'Price',
-            ),
-          ),
-          TextField(
-            controller: tecComparePrice,
-            decoration: const InputDecoration(
-              labelText: 'Compare Price',
-            ),
-          ),
-          TextField(
-            controller: tecimageAssets,
-            decoration: const InputDecoration(
-              labelText: 'Image assets',
-            ),
-          ),
-          TextField(
-            controller: tecFoodinCategory,
-            decoration: const InputDecoration(
-              labelText: 'Food in Category',
-            ),
-          ),
+          // TextField(
+          //   controller: tecFoodName,
+          //   decoration: const InputDecoration(
+          //     labelText: 'Food name',
+          //   ),
+          // ),
+          // TextField(
+          //   controller: tecPrice,
+          //   decoration: const InputDecoration(
+          //     labelText: 'Price',
+          //   ),
+          // ),
+          // TextField(
+          //   controller: tecComparePrice,
+          //   decoration: const InputDecoration(
+          //     labelText: 'Compare Price',
+          //   ),
+          // ),
+          // TextField(
+          //   controller: tecimageAssets,
+          //   decoration: const InputDecoration(
+          //     labelText: 'Image assets',
+          //   ),
+          // ),
+
           TextField(
             controller: tecDeliveryTime,
             decoration: const InputDecoration(
@@ -296,6 +252,48 @@ class _CategoryFormState extends State<CategoryForm> {
           ),
           const SizedBox(
             width: 8,
+          ),
+          Obx(() => Container(
+                height: 100,
+                color: Colors.red,
+                width: double.infinity,
+                child: Column(
+                  children: categoryController.listFood
+                      .map(
+                        (element) => Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              child: Column(
+                                children: [
+                                  Text(element.name),
+                                  Text(element.price),
+                                  Text(element.comparePrice),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20, top: 10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black),
+                  onPressed: () {
+                    Get.to(() =>
+                        const FoodForm(transactionMode: TransactionMode.add));
+                  },
+                  child: const Text('Add Food'),
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -20,18 +20,8 @@ class CategoryController extends GetxController {
     nameCategory: '',
     title: '',
     subtitle: '',
-    foods: [
-      Food(
-        name: '',
-        comparePrice: '',
-        imageUrl: '',
-        isHotSale: true,
-        price: '',
-      ),
-    ],
-    shopID: '',
     deliveryTime: '15 min',
-    foodinCategory: '',
+    shopID: '',
   );
   CategoryController({
     required this.getListofCategoryByShopIdUseCase,
@@ -40,6 +30,18 @@ class CategoryController extends GetxController {
     required this.updateCategoryUseCase,
     required this.deleteCategoryUseCase,
   });
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  void addFoodtoList(Food food) {
+    listFood.add(food);
+  }
+
+  void clearListFood() {
+    listFood.clear();
+  }
 
   selectFood(Food food) {
     selectedFood = food;
@@ -85,7 +87,6 @@ class CategoryController extends GetxController {
       },
       (r) {
         listCategory.add(model);
-
         listCategoryid.add(model);
         Get.back();
       },

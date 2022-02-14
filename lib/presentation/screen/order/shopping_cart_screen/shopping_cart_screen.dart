@@ -228,7 +228,7 @@ class ShoppingCartScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
               child: SizedBox(
                 width: double.infinity,
-                height: 100,
+                height: 125,
                 child: Column(
                   children: [
                     Row(

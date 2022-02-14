@@ -81,7 +81,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                         categoryController = Get.find();
                                     categoryController
                                         .loadCategoryByShopId(shopModel.id);
-                                    // shopController.selectShop(shopModel);
+                                    shopController.selectShop(shopModel);
                                     Get.to(
                                       () => const CategoryScreen(),
                                     );

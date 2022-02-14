@@ -162,61 +162,70 @@ class CategorySection extends StatelessWidget {
                     },
                   );
                 },
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20, left: 15),
-                          child: Text(
-                            'Coffee Cappucino',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30, left: 15),
-                          child: Row(
-                            children: const [
-                              Text('\$ 1.50 '),
-                              SizedBox(
-                                width: 10,
+                child: categoryModel.foods != null
+                    ? Column(
+                        children: categoryModel.foods!
+                            .map(
+                              (e) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, left: 15),
+                                    child: Text(
+                                      e.name,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 30, left: 15),
+                                    child: Row(
+                                      children: [
+                                        Text('\$ ' + e.price),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Icon(
+                                          Icons.fireplace,
+                                          color: Colors.pink,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 10),
+                                          child: Text('ពេញនិយម'),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 100),
+                                          child: SizedBox(
+                                            height: 100,
+                                            width: 100,
+                                            child: Image(
+                                              image: AssetImage(e.imageUrl),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 1,
+                                      color: Colors.grey[400],
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Icon(
-                                Icons.fireplace,
-                                color: Colors.pink,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Text('ពេញនិយម'),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Column(
-                        children: const [
-                          SizedBox(
-                            height: 100,
-                            width: 200,
-                            child: Image(
-                              image: AssetImage(
-                                'assets/starbuck.jpg',
-                              ),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                            )
+                            .toList(),
+                      )
+                    : const SizedBox.shrink(),
               ),
             ],
           ),
@@ -237,14 +246,6 @@ class CategorySection extends StatelessWidget {
           //         ),
           //       )
           //     : const SizedBox.shrink(),
-
-          Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Container(
-                width: double.infinity,
-                height: 1,
-                color: Colors.grey[400],
-              )),
         ],
       ),
     );
