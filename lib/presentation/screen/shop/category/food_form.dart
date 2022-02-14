@@ -32,9 +32,8 @@ class _CategoryFormState extends State<FoodForm> {
   late TextEditingController tecPrice;
   late TextEditingController tecComparePrice;
   late TextEditingController tecimageAssets;
-  late TextEditingController tecFood;
+
   late TextEditingController tecDeliveryTime;
-  late TextEditingController tecFoodinCategory;
 
   File? pictureFile;
 

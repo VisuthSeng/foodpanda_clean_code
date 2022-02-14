@@ -31,8 +31,11 @@ class _CategoryFormState extends State<CategoryForm> {
   late TextEditingController tecNameCategory;
   late TextEditingController tecTitle;
   late TextEditingController tecSubtitle;
-
   late TextEditingController tecDeliveryTime;
+  late TextEditingController tecFoodName;
+  late TextEditingController tecPrice;
+  late TextEditingController tecComparePrice;
+  late TextEditingController tecimageAssets;
 
   File? pictureFile;
 
@@ -42,11 +45,19 @@ class _CategoryFormState extends State<CategoryForm> {
     tecTitle = TextEditingController();
     tecSubtitle = TextEditingController();
     tecDeliveryTime = TextEditingController();
+    tecFoodName = TextEditingController();
+    tecPrice = TextEditingController();
+    tecComparePrice = TextEditingController();
+    tecimageAssets = TextEditingController();
     if (widget.transactionMode == TransactionMode.edit) {
       tecNameCategory.text = categoryController.selectedCategory.nameCategory;
       tecTitle.text = categoryController.selectedCategory.title;
       tecSubtitle.text = categoryController.selectedCategory.subtitle;
       tecDeliveryTime.text = categoryController.selectedCategory.deliveryTime;
+      tecFoodName.text = categoryController.selectedFood.name;
+      tecPrice.text = categoryController.selectedFood.price;
+      tecComparePrice.text = categoryController.selectedFood.comparePrice;
+      tecimageAssets.text = categoryController.selectedFood.imageUrl;
     }
 
     super.initState();
@@ -57,8 +68,11 @@ class _CategoryFormState extends State<CategoryForm> {
     tecNameCategory.dispose();
     tecTitle.dispose();
     tecSubtitle.dispose();
-
     tecDeliveryTime.dispose();
+    tecFoodName.dispose();
+    tecPrice.dispose();
+    tecComparePrice.dispose();
+    tecimageAssets.dispose();
 
     super.dispose();
   }
@@ -267,9 +281,9 @@ class _CategoryFormState extends State<CategoryForm> {
                             Card(
                               child: Column(
                                 children: [
-                                  Text(element.name),
-                                  Text(element.price),
-                                  Text(element.comparePrice),
+                                  Text(tecFoodName.text),
+                                  Text(tecPrice.text),
+                                  Text(tecComparePrice.text),
                                 ],
                               ),
                             )
@@ -279,8 +293,8 @@ class _CategoryFormState extends State<CategoryForm> {
                       .toList(),
                 ),
               )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 20, top: 10),
@@ -291,6 +305,17 @@ class _CategoryFormState extends State<CategoryForm> {
                         const FoodForm(transactionMode: TransactionMode.add));
                   },
                   child: const Text('Add Food'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20, top: 10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black),
+                  onPressed: () {
+                    Get.to(() =>
+                        const FoodForm(transactionMode: TransactionMode.edit));
+                  },
+                  child: const Text('Edit Food'),
                 ),
               ),
             ],
