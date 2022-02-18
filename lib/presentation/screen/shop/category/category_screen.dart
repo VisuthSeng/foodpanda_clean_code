@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/core/enum/transaction_enum.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/shop/category/category_form.dart';
-import 'package:foodpanda_clean_code/presentation/screen/shop/category/food_form.dart';
 import 'package:get/get.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -46,8 +45,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       final CategoryController categoryController = Get.find();
                       categoryController.selectCategory(categoryModel);
 
-                      Get.to(() =>
-                          CategoryForm(transactionMode: TransactionMode.edit));
+                      Get.to(() => const CategoryForm(
+                          transactionMode: TransactionMode.edit));
                     },
                     child: Card(
                       child: Container(

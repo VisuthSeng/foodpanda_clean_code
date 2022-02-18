@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
-import 'package:foodpanda_clean_code/presentation/screen/order/shopping_cart_screen/shopping_cart_screen.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/topping/topping_screen.dart';
 import 'package:get/get.dart';
 
 class CategorySection extends StatelessWidget {
@@ -146,8 +146,9 @@ class CategorySection extends StatelessWidget {
                                             primary: Colors.pink,
                                           ),
                                           onPressed: () {
-                                            Get.to(() =>
-                                                const ShoppingCartScreen());
+                                            Get.to(
+                                              () => const ToppingScreen(),
+                                            );
                                           },
                                           child: const Text(
                                               'ដាក់ថែមក្នុងកន្ត្រក')),

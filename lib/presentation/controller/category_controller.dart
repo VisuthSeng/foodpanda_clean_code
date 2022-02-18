@@ -37,10 +37,6 @@ class CategoryController extends GetxController {
     required this.updateCategoryUseCase,
     required this.deleteCategoryUseCase,
   });
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void addFoodtoList(Food food) {
     listFood.add(food);

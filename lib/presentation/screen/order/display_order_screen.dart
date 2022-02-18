@@ -13,7 +13,7 @@ class DisplayOrderScreen extends StatelessWidget {
       if (categoryController.listCategoryid.isEmpty) {
         return const LoadScreen();
       } else {
-        return OrderScreen();
+        return const OrderScreen();
       }
     });
   }

@@ -38,6 +38,7 @@ class _CategoryFormState extends State<FoodForm> {
   File? pictureFile;
 
   @override
+  // ignore: must_call_super
   void initState() {
     tecFoodName = TextEditingController();
     tecPrice = TextEditingController();
