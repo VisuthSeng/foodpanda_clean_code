@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodpanda_clean_code/presentation/screen/restaurant/restaurant_screen.dart';
 import 'package:get/get.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class ShoppingCartScreen extends StatelessWidget {
                         primary: Colors.pink,
                       ),
                       onPressed: () {
-                        Get.back();
+                        Get.offAll(() => const RestarauntScreen());
                       },
                       child: const Text('ពិនិត្យការទូទាត់និងុអាសយ៉ដ្ធានឡើងវិញ'),
                     ),

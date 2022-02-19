@@ -37,7 +37,6 @@ class ShopController extends GetxController {
   }
 
   loadShop() async {
-    listShop.clear();
     var response = await getListOfShopUseCase.call(NoParam());
     response.fold(
       (l) {

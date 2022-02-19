@@ -52,6 +52,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/shopping_cart_screen/shopping_cart_screen.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/widget/header_clip.dart';
 
 import 'package:get/get.dart';
@@ -97,6 +98,58 @@ class _MyHomePageState extends State<ToppingScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        child: SizedBox(
+          height: 100,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: const [
+                          CircleAvatar(
+                            backgroundColor: Colors.pink,
+                            radius: 16,
+                            child: Icon(Icons.remove),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            child: Text('1'),
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.pink,
+                            radius: 16,
+                            child: Icon(Icons.add),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.pink,
+                        ),
+                        onPressed: () {
+                          Get.to(() => const ShoppingCartScreen());
+                        },
+                        child: const Text('ដាក់ថែមក្នុងកន្ត្រក'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -347,6 +400,77 @@ class _MyHomePageState extends State<ToppingScreen>
                       secondary: const Text('+ \$ 0.00'),
                     ),
                   ],
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30, left: 15, right: 15),
+              child: Divider(
+                thickness: 1,
+                height: 2,
+                color: Colors.grey[400],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text('ការណែនាំពិសេស'),
+                  Text(
+                      '(សូមអោយពួកយើងដឹក ថាអ្កកមានប្រតិកម្មជាមួយអ្វីក៏ដោយ រឺ អោយពូកយើងចៀសវាងកុមដាក់អ្វីក៏ដោយដែលអ្នកមានប្រតិកម្ម​​។)'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 2,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('ប្រសិនបើមិនមានផលិតផលនេះ'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 2,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text('ដកចេញពីការកម្ម៉ង់របស់ខ្ញុំ'),
+                    ),
+                  ),
                 ),
               ],
             ),
