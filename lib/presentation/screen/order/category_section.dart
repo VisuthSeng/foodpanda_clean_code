@@ -74,8 +74,8 @@ class CategorySection extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: const [
-                                  Text('បាយសាច់ជ្រូក'),
-                                  Text('\$ 1.50'),
+                                  Text('Starbuck Coffee'),
+                                  Text('\$ 2.50'),
                                 ],
                               ),
                             ),
