@@ -167,68 +167,71 @@ class ShoppingCartScreen extends StatelessWidget {
                   child: Column(
                     children: categoryController.listOrder
                         .map(
-                          (listOrder) => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.4),
-                                      spreadRadius: 2,
-                                      blurRadius: 7,
-                                      offset: const Offset(0, 3),
+                          (listOrder) => SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.4),
+                                        spreadRadius: 2,
+                                        blurRadius: 7,
+                                        offset: const Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: const Center(
+                                      child: Text(
+                                    '1',
+                                    style: TextStyle(fontSize: 10),
+                                  )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: SizedBox(
+                                    height: 70,
+                                    width: 80,
+                                    child: Image(
+                                      image: AssetImage(listOrder.imageUrl),
+                                      fit: BoxFit.fill,
                                     ),
-                                  ],
+                                  ),
                                 ),
-                                child: const Center(
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 40),
+                                  child: SizedBox(
                                     child: Text(
-                                  '1',
-                                  style: TextStyle(fontSize: 10),
-                                )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: SizedBox(
-                                  height: 70,
-                                  width: 80,
-                                  child: Image(
-                                    image: AssetImage(listOrder.imageUrl),
-                                    fit: BoxFit.fill,
+                                      listOrder.name,
+                                      style: const TextStyle(
+                                          color: Colors.pink, fontSize: 12),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40),
-                                child: SizedBox(
+                                SizedBox(
                                   child: Text(
-                                    listOrder.name,
+                                    '\$ ${listOrder.price}',
                                     style: const TextStyle(
-                                        color: Colors.pink, fontSize: 12),
+                                        color: Colors.black, fontSize: 12),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                child: Text(
-                                  '\$ ${listOrder.price}',
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 12),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15),
+                                  child: Divider(
+                                    thickness: 2,
+                                    height: 2,
+                                    color: Colors.grey[200],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 15, right: 15),
-                                child: Divider(
-                                  thickness: 2,
-                                  height: 2,
-                                  color: Colors.grey[200],
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                         .toList(),
