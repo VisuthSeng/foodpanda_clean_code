@@ -157,41 +157,41 @@ class ShoppingCartScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
-              child: Container(
-                width: double.infinity,
-                height: 300,
-                color: Colors.white,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: categoryController.listOrder
-                        .map(
-                          (listOrder) => SingleChildScrollView(
+            SingleChildScrollView(
+              child: Column(
+                children: categoryController.listOrder
+                    .map(
+                      (listOrder) => Column(
+                        children: [
+                          SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  height: 30,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.4),
-                                        spreadRadius: 2,
-                                        blurRadius: 7,
-                                        offset: const Offset(0, 3),
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Center(
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 15),
+                                  child: Container(
+                                    height: 30,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(2),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.4),
+                                          spreadRadius: 2,
+                                          blurRadius: 7,
+                                          offset: const Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Center(
                                       child: Text(
-                                    '1',
-                                    style: TextStyle(fontSize: 10),
-                                  )),
+                                        '1',
+                                        style: TextStyle(fontSize: 10),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
@@ -205,7 +205,8 @@ class ShoppingCartScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 40),
+                                  padding: const EdgeInsets.only(
+                                      right: 40, left: 20),
                                   child: SizedBox(
                                     child: Text(
                                       listOrder.name,
@@ -214,29 +215,27 @@ class ShoppingCartScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  child: Text(
-                                    '\$ ${listOrder.price}',
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 12),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15, right: 15),
-                                  child: Divider(
-                                    thickness: 2,
-                                    height: 2,
-                                    color: Colors.grey[200],
-                                  ),
+                                Text(
+                                  '\$ ${listOrder.price}',
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 12),
                                 ),
                               ],
                             ),
                           ),
-                        )
-                        .toList(),
-                  ),
-                ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 15, top: 15, bottom: 10),
+                            child: Divider(
+                              thickness: 2,
+                              height: 5,
+                              color: Colors.grey[300],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
               ),
             ),
             Padding(
