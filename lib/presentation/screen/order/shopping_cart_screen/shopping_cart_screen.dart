@@ -24,9 +24,9 @@ class ShoppingCartScreen extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('សរុប' '（បូកទាំងពន្ធ）'),
-                    Text('\$ 2.64'),
+                  children: [
+                    const Text('សរុប' '（បូកទាំងពន្ធ）'),
+                    Text(categoryController.totalvalue.toString()),
                   ],
                 ),
                 Padding(
