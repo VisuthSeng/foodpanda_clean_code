@@ -1,5 +1,6 @@
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 import 'package:foodpanda_clean_code/data/model/shop_model.dart';
+import 'package:foodpanda_clean_code/data/model/size_model.dart';
 import 'package:foodpanda_clean_code/domain/usecase/category_usecase.dart';
 import 'package:foodpanda_clean_code/domain/util/no_param.dart';
 
@@ -11,20 +12,32 @@ class CategoryController extends GetxController {
   final SaveCategoryUseCase saveCategoryUseCase;
   final UpdateCategoryUseCase updateCategoryUseCase;
   final DeleteCategoryUseCase deleteCategoryUseCase;
-  var value = 0.obs;
+  var totalvalue = 0.00;
+  int selectedValue = 0;
+
+  int value = 0;
+  var size = '';
+
   var selectedCategory = CategoryModel(
-      id: '',
-      title: '',
-      subtitle: '',
-      nameCategory: '',
-      shopID: '',
-      deliveryTime: '');
+    id: '',
+    title: '',
+    subtitle: '',
+    nameCategory: '',
+    shopID: '',
+    deliveryTime: '',
+  );
   var selectedFood = Food(
-      name: '', price: '', comparePrice: '', imageUrl: '', isHotSale: true);
+    name: '',
+    price: '',
+    comparePrice: '',
+    imageUrl: '',
+    isHotSale: true,
+  );
   var listCategory = RxList<CategoryModel>();
   var listCategoryid = RxList<CategoryModel>();
   var listOrder = RxList<Food>();
   var listFood = RxList<Food>();
+  var listSize = RxList<SizeModel>();
   var showSelectShop = RxList<ShopModel>();
   var showListFood = RxList<Food>();
   var blankcategory = CategoryModel(
@@ -44,8 +57,20 @@ class CategoryController extends GetxController {
     required this.deleteCategoryUseCase,
   });
 
-  void increaseValue() {
-    value++;
+  void getToppingSize() {
+    if (selectedValue == 1) {
+      size = 'កែវតូច';
+    } else if (selectedValue == 2) {
+      size = 'កែវកណ្ដាល';
+    } else if (selectedValue == 3) {
+      size = 'កែវធំ';
+    } else {
+      size = '';
+    }
+  }
+
+  void increaseValue(double? price) {
+    totalvalue += price!;
   }
 
   void addtolistOrder(Food food) {

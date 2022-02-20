@@ -90,11 +90,8 @@ class _MyHomePageState extends State<ToppingScreen>
     super.dispose();
   }
 
-  int selectedValue = 1;
-  int selectedice = 0;
   int selectedSugar = 0;
-  int value = 0;
-
+  int selectedice = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,6 +136,7 @@ class _MyHomePageState extends State<ToppingScreen>
                           primary: Colors.pink,
                         ),
                         onPressed: () {
+                          categoryController.getToppingSize();
                           Get.to(() => ShoppingCartScreen());
                         },
                         child: const Text('ដាក់ថែមក្នុងកន្ត្រក'),
@@ -210,7 +208,7 @@ class _MyHomePageState extends State<ToppingScreen>
                                 children: [
                                   GestureDetector(
                                     onTap: () {},
-                                    child: selectedValue == 1
+                                    child: categoryController.selectedValue == 1
                                         ? const Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
@@ -241,10 +239,11 @@ class _MyHomePageState extends State<ToppingScreen>
                                   RadioListTile(
                                     activeColor: Colors.pink,
                                     value: 1,
-                                    groupValue: selectedValue,
+                                    groupValue:
+                                        categoryController.selectedValue,
                                     onChanged: (value) => setState(
                                       () {
-                                        selectedValue = 1;
+                                        categoryController.selectedValue = 1;
                                       },
                                     ),
                                     title: const Text('កែវតូច'),
@@ -253,10 +252,11 @@ class _MyHomePageState extends State<ToppingScreen>
                                   RadioListTile(
                                     activeColor: Colors.pink,
                                     value: 2,
-                                    groupValue: selectedValue,
+                                    groupValue:
+                                        categoryController.selectedValue,
                                     onChanged: (value) => setState(
                                       () {
-                                        selectedValue = 2;
+                                        categoryController.selectedValue = 2;
                                       },
                                     ),
                                     title: const Text('កែវកណ្តាល'),
@@ -265,10 +265,11 @@ class _MyHomePageState extends State<ToppingScreen>
                                   RadioListTile(
                                     activeColor: Colors.pink,
                                     value: 3,
-                                    groupValue: selectedValue,
+                                    groupValue:
+                                        categoryController.selectedValue,
                                     onChanged: (value) => setState(
                                       () {
-                                        selectedValue = 3;
+                                        categoryController.selectedValue = 3;
                                       },
                                     ),
                                     title: const Text('កែវធំ'),
