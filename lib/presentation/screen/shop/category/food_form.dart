@@ -200,13 +200,13 @@ class _CategoryFormState extends State<FoodForm> {
           TextField(
             controller: tecPrice,
             decoration: const InputDecoration(
-              labelText: 'Price',
+              labelText: 'Price ${.00}',
             ),
           ),
           TextField(
             controller: tecComparePrice,
             decoration: const InputDecoration(
-              labelText: 'Compare Price',
+              labelText: 'Compare Price ${.00}',
             ),
           ),
           TextField(

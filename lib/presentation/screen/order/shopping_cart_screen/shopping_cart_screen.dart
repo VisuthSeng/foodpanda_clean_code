@@ -208,10 +208,24 @@ class ShoppingCartScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       right: 40, left: 20),
                                   child: SizedBox(
-                                    child: Text(
-                                      listOrder.name,
-                                      style: const TextStyle(
-                                          color: Colors.pink, fontSize: 12),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          listOrder.name,
+                                          style: const TextStyle(
+                                              color: Colors.pink, fontSize: 12),
+                                        ),
+                                        Column(
+                                          children: [
+                                            Text(
+                                              categoryController.size,
+                                              style: const TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -247,9 +261,9 @@ class ShoppingCartScreen extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text('សរុប'),
-                        Text('\$ 1.99'),
+                      children: [
+                        const Text('សរុប'),
+                        Text(categoryController.totalvalue.toString()),
                       ],
                     ),
                     Padding(

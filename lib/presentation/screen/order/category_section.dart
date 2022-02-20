@@ -193,6 +193,8 @@ class CategorySection extends StatelessWidget {
                                                                           () {
                                                                         categoryController
                                                                             .addtolistOrder(e);
+                                                                        categoryController
+                                                                            .increaseValue(double.tryParse(e.price));
                                                                         Get.to(
                                                                           () =>
                                                                               const ToppingScreen(),
