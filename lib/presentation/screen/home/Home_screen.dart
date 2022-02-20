@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => const ShoppingCartScreen());
+              Get.to(() => ShoppingCartScreen());
             },
             icon: const Icon(
               Icons.favorite_border_outlined,

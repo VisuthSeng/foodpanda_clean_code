@@ -145,12 +145,13 @@ class _RestarauntScreenState extends State<RestarauntScreen> {
                         .map(
                           (shopModel) => GestureDetector(
                             onTap: () {
-                              // shopController.selectShop(shopModel);
+                              shopController.selectShop(shopModel);
                               final CategoryController categoryController =
                                   Get.find();
+
                               categoryController
                                   .loadCategoryByShopId(shopModel.id);
-                              Get.snackbar("hi", shopModel.nameShop);
+                              // Get.snackbar("hi", shopModel.nameShop);
 
                               Get.to(
                                 () => DisplayOrderScreen(),

@@ -8,7 +8,7 @@ class ShopController extends GetxController {
   final SaveShopUseCase saveShopUseCase;
   final UpdateShopUseCase updateShopUseCase;
   final DeleteShopUseCase deleteShopUseCase;
-
+  var getShop = RxList<ShopModel>();
   var listShop = RxList<ShopModel>();
   var selectedShop = ShopModel(
     id: '',
@@ -33,7 +33,9 @@ class ShopController extends GetxController {
   }
 
   selectShop(ShopModel model) {
+    getShop.clear();
     selectedShop = model;
+    getShop.add(model);
   }
 
   loadShop() async {

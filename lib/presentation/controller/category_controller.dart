@@ -1,4 +1,5 @@
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
+import 'package:foodpanda_clean_code/data/model/shop_model.dart';
 import 'package:foodpanda_clean_code/domain/usecase/category_usecase.dart';
 import 'package:foodpanda_clean_code/domain/util/no_param.dart';
 
@@ -10,6 +11,7 @@ class CategoryController extends GetxController {
   final SaveCategoryUseCase saveCategoryUseCase;
   final UpdateCategoryUseCase updateCategoryUseCase;
   final DeleteCategoryUseCase deleteCategoryUseCase;
+  var value = 0.obs;
   var selectedCategory = CategoryModel(
       id: '',
       title: '',
@@ -21,7 +23,10 @@ class CategoryController extends GetxController {
       name: '', price: '', comparePrice: '', imageUrl: '', isHotSale: true);
   var listCategory = RxList<CategoryModel>();
   var listCategoryid = RxList<CategoryModel>();
+  var listOrder = RxList<Food>();
   var listFood = RxList<Food>();
+  var showSelectShop = RxList<ShopModel>();
+  var showListFood = RxList<Food>();
   var blankcategory = CategoryModel(
     id: '',
     nameCategory: '',
@@ -30,6 +35,7 @@ class CategoryController extends GetxController {
     deliveryTime: '15 min',
     shopID: '',
   );
+
   CategoryController({
     required this.getListofCategoryByShopIdUseCase,
     required this.getListofCategoryUseCase,
@@ -37,6 +43,18 @@ class CategoryController extends GetxController {
     required this.updateCategoryUseCase,
     required this.deleteCategoryUseCase,
   });
+
+  void increaseValue() {
+    value++;
+  }
+
+  void addtolistOrder(Food food) {
+    listOrder.add(food);
+  }
+
+  void addtoshowFood(Food food) {
+    showListFood.add(food);
+  }
 
   void addFoodtoList(Food food) {
     listFood.add(food);
@@ -48,6 +66,10 @@ class CategoryController extends GetxController {
 
   selectFood(Food food) {
     selectedFood = food;
+  }
+
+  selectShop(ShopModel shopModel) {
+    showSelectShop.add(shopModel);
   }
 
   selectCategory(CategoryModel model) {

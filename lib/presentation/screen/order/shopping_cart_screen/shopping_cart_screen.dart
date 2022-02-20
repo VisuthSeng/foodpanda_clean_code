@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
+import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/home/Home_screen.dart';
+import 'package:foodpanda_clean_code/presentation/screen/order/order_screen.dart';
 import 'package:get/get.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
-  const ShoppingCartScreen({Key? key}) : super(key: key);
-
+  ShoppingCartScreen({Key? key}) : super(key: key);
+  final CategoryController categoryController = Get.find();
+  final ShopController shopController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +38,7 @@ class ShoppingCartScreen extends StatelessWidget {
                         primary: Colors.pink,
                       ),
                       onPressed: () {
+                        categoryController.listOrder.clear();
                         Get.offAll(() => const HomeScreen());
                       },
                       child: const Text('ពិនិត្យការទូទាត់និងុអាសយ៉ដ្ធានឡើងវិញ'),
@@ -53,22 +58,26 @@ class ShoppingCartScreen extends StatelessWidget {
             color: Colors.pink,
           ),
           onPressed: () {
-            Get.back();
+            Get.to(() => const OrderScreen());
           },
         ),
         title: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'កន្ត្រកទំនិញ',
-              style: TextStyle(color: Colors.red, fontSize: 14),
-            ),
-            Text(
-              'TUBE COFFEE (Chouk Meas)',
-              style: TextStyle(color: Colors.red, fontSize: 14),
-            )
-          ],
+          children: shopController.getShop
+              .map((shop) => Column(
+                    children: [
+                      const Text(
+                        'កន្ត្រកទំនិញ',
+                        style: TextStyle(color: Colors.red, fontSize: 14),
+                      ),
+                      Text(
+                        shop.nameShop,
+                        style: const TextStyle(color: Colors.red, fontSize: 14),
+                      )
+                    ],
+                  ))
+              .toList(),
         ),
       ),
       body: SingleChildScrollView(
@@ -152,77 +161,79 @@ class ShoppingCartScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
               child: Container(
                 width: double.infinity,
-                height: 80,
+                height: 300,
                 color: Colors.white,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 30,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(2),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.4),
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: const Offset(0, 3),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: categoryController.listOrder
+                        .map(
+                          (listOrder) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(2),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.4),
+                                      spreadRadius: 2,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: const Center(
+                                    child: Text(
+                                  '1',
+                                  style: TextStyle(fontSize: 10),
+                                )),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: SizedBox(
+                                  height: 70,
+                                  width: 80,
+                                  child: Image(
+                                    image: AssetImage(listOrder.imageUrl),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 40),
+                                child: SizedBox(
+                                  child: Text(
+                                    listOrder.name,
+                                    style: const TextStyle(
+                                        color: Colors.pink, fontSize: 12),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  '\$ ${listOrder.price}',
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Divider(
+                                  thickness: 2,
+                                  height: 2,
+                                  color: Colors.grey[200],
+                                ),
                               ),
                             ],
                           ),
-                          child: const Center(
-                              child: Text(
-                            '1 v',
-                            style: TextStyle(fontSize: 10),
-                          )),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                            height: 60,
-                            width: 80,
-                            child: Image(
-                              image: AssetImage('assets/brown4.jpg'),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 50),
-                          child: SizedBox(
-                            child: Text(
-                              'Passion Fruit Juice',
-                              style:
-                                  TextStyle(color: Colors.pink, fontSize: 10),
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 30),
-                          child: SizedBox(
-                            child: Text(
-                              '\$ 1.99',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 10),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        )
+                        .toList(),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Divider(
-                thickness: 2,
-                height: 2,
-                color: Colors.grey[200],
               ),
             ),
             Padding(

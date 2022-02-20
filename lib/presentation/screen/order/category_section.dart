@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
+import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/topping/topping_screen.dart';
 import 'package:get/get.dart';
 
@@ -50,124 +51,169 @@ class CategorySection extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return SizedBox(
-                        width: double.infinity,
-                        height: 400,
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 200,
-                              width: double.infinity,
-                              child: Image(
-                                image: AssetImage('assets/starbuck.jpg'),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text('Starbuck Coffee'),
-                                  Text('\$ 2.50'),
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
+              categoryModel.foods != null
+                  ? Column(
+                      children: categoryModel.foods!
+                          .map(
+                            (e) => GestureDetector(
                               onTap: () {
-                                Get.snackbar('បន្ថែមការណែនាំពិសេស',
-                                    'បន្ថែមការណែនាំពិសេស');
+                                CategoryController categoryController =
+                                    Get.find();
+                                categoryController.showListFood.clear();
+                                categoryController.addtoshowFood(e);
+
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      width: double.infinity,
+                                      height: 400,
+                                      child: Column(
+                                        children: categoryController
+                                            .showListFood
+                                            .map((e) => Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 200,
+                                                      width: double.infinity,
+                                                      child: Image(
+                                                        image: AssetImage(
+                                                            e.imageUrl),
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              20),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(e.name),
+                                                          Text('\$ ${e.price}'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        Get.snackbar(
+                                                            'បន្ថែមការណែនាំពិសេស',
+                                                            'បន្ថែមការណែនាំពិសេស');
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 30,
+                                                        width: double.infinity,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 25),
+                                                          child: Row(
+                                                            children: const [
+                                                              Icon(
+                                                                Icons.add,
+                                                                color:
+                                                                    Colors.pink,
+                                                              ),
+                                                              Text(
+                                                                'បន្ថែមការណែនាំពិសេស',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .pink),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 40),
+                                                      child: Row(
+                                                        children: [
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 20),
+                                                            child: CircleAvatar(
+                                                              backgroundColor:
+                                                                  Colors.grey,
+                                                              child: Icon(
+                                                                Icons.remove,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 20),
+                                                            child: Text(
+                                                              '1',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 20),
+                                                            child: CircleAvatar(
+                                                              backgroundColor:
+                                                                  Colors.pink,
+                                                              child: Icon(
+                                                                Icons.add,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 20,
+                                                                    right: 10),
+                                                            child: SizedBox(
+                                                              width: 200,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        primary:
+                                                                            Colors.pink,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        categoryController
+                                                                            .addtolistOrder(e);
+                                                                        Get.to(
+                                                                          () =>
+                                                                              const ToppingScreen(),
+                                                                        );
+                                                                      },
+                                                                      child: const Text(
+                                                                          'ដាក់ថែមក្នុងកន្ត្រក')),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ))
+                                            .toList(),
+                                      ),
+                                    );
+                                  },
+                                );
                               },
-                              child: SizedBox(
-                                height: 30,
-                                width: double.infinity,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 25),
-                                  child: Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.add,
-                                        color: Colors.pink,
-                                      ),
-                                      Text(
-                                        'បន្ថែមការណែនាំពិសេស',
-                                        style: TextStyle(color: Colors.pink),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 40),
-                              child: Row(
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 20),
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.grey,
-                                      child: Icon(
-                                        Icons.remove,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      '1',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 20),
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      child: Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20, right: 10),
-                                    child: SizedBox(
-                                      width: 200,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Colors.pink,
-                                          ),
-                                          onPressed: () {
-                                            Get.to(
-                                              () => const ToppingScreen(),
-                                            );
-                                          },
-                                          child: const Text(
-                                              'ដាក់ថែមក្នុងកន្ត្រក')),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: categoryModel.foods != null
-                    ? Column(
-                        children: categoryModel.foods!
-                            .map(
-                              (e) => Column(
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
@@ -223,11 +269,11 @@ class CategorySection extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            )
-                            .toList(),
-                      )
-                    : const SizedBox.shrink(),
-              ),
+                            ),
+                          )
+                          .toList(),
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
           // categoryModel.foods != null

@@ -53,6 +53,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodpanda_clean_code/data/model/category_model.dart';
 import 'package:foodpanda_clean_code/presentation/controller/category_controller.dart';
+import 'package:foodpanda_clean_code/presentation/controller/shop_controller.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/category_section.dart';
 import 'package:foodpanda_clean_code/presentation/screen/order/widget/header_clip.dart';
 
@@ -71,6 +72,7 @@ class _MyHomePageState extends State<OrderScreen>
     with SingleTickerProviderStateMixin {
   final CategoryController categoryController = Get.find();
 
+  final ShopController shopController = Get.find();
   // TabController More Information => https://api.flutter.dev/flutter/material/TabController-class.html
   late AutoScrollController scrollController;
   late TabController tabController;
@@ -126,16 +128,15 @@ class _MyHomePageState extends State<OrderScreen>
                   titlePadding: const EdgeInsets.only(bottom: 50),
                   collapseMode: CollapseMode.pin,
                   background: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          HeaderClip(context: context),
-                          const SizedBox(
-                            height: 100,
+                    children: shopController.getShop
+                        .map(
+                          (e) => Stack(
+                            children: [
+                              HeaderClip(context: context, image: e.image),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
+                        )
+                        .toList(),
                   ),
                 ),
                 bottom: TabBar(
