@@ -1,4 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+// class Item {
+// String name;
+// double price;
+
+// }
+
+// class SubFood {
+//  String name;
+// List<Item>? listItem;
+// }
 
 class Food {
   String name;
@@ -6,6 +16,7 @@ class Food {
   String comparePrice;
   String imageUrl;
   bool isHotSale;
+  // List<SubFood>? listSubFood;
 
   Food({
     required this.name,
