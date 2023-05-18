@@ -267,7 +267,8 @@ class HomeScreen extends StatelessWidget {
                                                   child: ElevatedButton(
                                                       style: ElevatedButton
                                                           .styleFrom(
-                                                        primary: Colors.pink,
+                                                        backgroundColor:
+                                                            Colors.pink,
                                                       ),
                                                       onPressed: () {},
                                                       child: const Text(

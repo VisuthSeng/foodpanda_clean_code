@@ -133,7 +133,7 @@ class _MyHomePageState extends State<ToppingScreen>
                       width: 200,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.pink,
+                          backgroundColor: Colors.pink,
                         ),
                         onPressed: () {
                           categoryController.getToppingSize();

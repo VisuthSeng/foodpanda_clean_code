@@ -35,7 +35,7 @@ class ShoppingCartScreen extends StatelessWidget {
                     width: double.maxFinite,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink,
+                        backgroundColor: Colors.pink,
                       ),
                       onPressed: () {
                         categoryController.listOrder.clear();

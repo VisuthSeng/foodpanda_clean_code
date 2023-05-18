@@ -299,7 +299,8 @@ class _CategoryFormState extends State<CategoryForm> {
               Padding(
                 padding: const EdgeInsets.only(right: 20, top: 10),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.black),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   onPressed: () {
                     Get.to(() =>
                         const FoodForm(transactionMode: TransactionMode.add));
@@ -310,7 +311,8 @@ class _CategoryFormState extends State<CategoryForm> {
               Padding(
                 padding: const EdgeInsets.only(right: 20, top: 10),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.black),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
                   onPressed: () {
                     Get.to(() =>
                         const FoodForm(transactionMode: TransactionMode.edit));

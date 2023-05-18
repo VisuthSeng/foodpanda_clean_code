@@ -28,7 +28,7 @@ class ShopController extends GetxController {
 
   @override
   void onInit() {
-    loadShop();
+    // loadShop();
     super.onInit();
   }
 

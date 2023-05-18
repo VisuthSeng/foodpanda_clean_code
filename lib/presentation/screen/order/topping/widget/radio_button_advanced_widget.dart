@@ -40,18 +40,18 @@ class _RadioButtonAdvancedWidgetState extends State<RadioButtonAdvancedWidget> {
                     groupValue: selectedValue,
                     title: Text(user.name),
                     subtitle: Text(user.description),
-                    secondary: OutlineButton(
-                      child: const Text('View Profile'),
-                      onPressed: () {
-                        final snackBar = SnackBar(
-                          content: Text('Profile: ${user.name}'),
-                        );
+                    // secondary: OutlineButton(
+                    //   child: const Text('View Profile'),
+                    //   onPressed: () {
+                    //     final snackBar = SnackBar(
+                    //       content: Text('Profile: ${user.name}'),
+                    //     );
 
-                        Scaffold.of(context)
-                          ..removeCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      },
-                    ),
+                    //     Scaffold.of(context)
+                    //       ..removeCurrentSnackBar()
+                    //       ..showSnackBar(snackBar);
+                    //   },
+                    // ),
                     onChanged: (value) =>
                         setState(() => selectedValue = value!),
                   ),

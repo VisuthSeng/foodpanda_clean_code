@@ -186,7 +186,7 @@ class CategorySection extends StatelessWidget {
                                                                   ElevatedButton(
                                                                       style: ElevatedButton
                                                                           .styleFrom(
-                                                                        primary:
+                                                                        backgroundColor:
                                                                             Colors.pink,
                                                                       ),
                                                                       onPressed:
@@ -347,7 +347,7 @@ class CategorySection extends StatelessWidget {
             Text(
               food.comparePrice,
               style: _textTheme(context)
-                  .caption
+                  .bodySmall
                   ?.copyWith(decoration: TextDecoration.lineThrough),
             ),
             const SizedBox(width: 8.0),
